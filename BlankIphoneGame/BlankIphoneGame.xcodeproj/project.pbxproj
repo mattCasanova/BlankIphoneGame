@@ -20,6 +20,7 @@
 		F5AB64FE1CB39526007A8EA7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AB64FD1CB39526007A8EA7 /* GLKit.framework */; };
 		F5AB65021CB3970C007A8EA7 /* GameMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65011CB3970C007A8EA7 /* GameMath.cpp */; };
 		F5AB65061CB39D8A007A8EA7 /* Vec2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65041CB39D8A007A8EA7 /* Vec2D.cpp */; };
+		F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		F5AB65011CB3970C007A8EA7 /* GameMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameMath.cpp; path = Source/GameMath.cpp; sourceTree = "<group>"; };
 		F5AB65041CB39D8A007A8EA7 /* Vec2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vec2D.cpp; path = Source/Vec2D.cpp; sourceTree = "<group>"; };
 		F5AB65051CB39D8A007A8EA7 /* Vec2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec2D.h; path = Source/Vec2D.h; sourceTree = "<group>"; };
+		F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mtx44.mm; path = Source/Mtx44.mm; sourceTree = "<group>"; };
+		F5AB65091CB3A10B007A8EA7 /* Mtx44.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mtx44.h; path = Source/Mtx44.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,7 @@
 		F5AB65001CB396EE007A8EA7 /* GameMath */ = {
 			isa = PBXGroup;
 			children = (
+				F5AB65071CB3A0F5007A8EA7 /* Mtx44 */,
 				F5AB65031CB39D18007A8EA7 /* Vector2D */,
 				F5AB64FF1CB396E7007A8EA7 /* GameMath.h */,
 				F5AB65011CB3970C007A8EA7 /* GameMath.cpp */,
@@ -206,6 +210,15 @@
 				F5AB65051CB39D8A007A8EA7 /* Vec2D.h */,
 			);
 			name = Vector2D;
+			sourceTree = "<group>";
+		};
+		F5AB65071CB3A0F5007A8EA7 /* Mtx44 */ = {
+			isa = PBXGroup;
+			children = (
+				F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */,
+				F5AB65091CB3A10B007A8EA7 /* Mtx44.h */,
+			);
+			name = Mtx44;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,6 +356,7 @@
 				F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */,
 				F5AB65021CB3970C007A8EA7 /* GameMath.cpp in Sources */,
 				F57E03AE1CB1312100FFF2D5 /* GameViewController.mm in Sources */,
+				F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */,
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,
 				F5AB65061CB39D8A007A8EA7 /* Vec2D.cpp in Sources */,
 			);
