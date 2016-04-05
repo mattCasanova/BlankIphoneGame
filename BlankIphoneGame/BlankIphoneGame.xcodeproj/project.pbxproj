@@ -18,6 +18,8 @@
 		F57E03C11CB1312100FFF2D5 /* BlankIphoneGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03C01CB1312100FFF2D5 /* BlankIphoneGameTests.m */; };
 		F57E03CC1CB1312100FFF2D5 /* BlankIphoneGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03CB1CB1312100FFF2D5 /* BlankIphoneGameUITests.m */; };
 		F5AB64FE1CB39526007A8EA7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AB64FD1CB39526007A8EA7 /* GLKit.framework */; };
+		F5AB65021CB3970C007A8EA7 /* GameMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65011CB3970C007A8EA7 /* GameMath.cpp */; };
+		F5AB65061CB39D8A007A8EA7 /* Vec2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65041CB39D8A007A8EA7 /* Vec2D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,10 @@
 		F57E03CB1CB1312100FFF2D5 /* BlankIphoneGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlankIphoneGameUITests.m; sourceTree = "<group>"; };
 		F57E03CD1CB1312100FFF2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5AB64FD1CB39526007A8EA7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		F5AB64FF1CB396E7007A8EA7 /* GameMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMath.h; path = Source/GameMath.h; sourceTree = "<group>"; };
+		F5AB65011CB3970C007A8EA7 /* GameMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameMath.cpp; path = Source/GameMath.cpp; sourceTree = "<group>"; };
+		F5AB65041CB39D8A007A8EA7 /* Vec2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vec2D.cpp; path = Source/Vec2D.cpp; sourceTree = "<group>"; };
+		F5AB65051CB39D8A007A8EA7 /* Vec2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec2D.h; path = Source/Vec2D.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 		F57E03A11CB1312100FFF2D5 /* BlankIphoneGame */ = {
 			isa = PBXGroup;
 			children = (
+				F5AB65001CB396EE007A8EA7 /* GameMath */,
 				F57E03DC1CB13AF400FFF2D5 /* ViewController */,
 				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
 				F57E03DA1CB1355900FFF2D5 /* AppleFiles */,
@@ -180,6 +187,25 @@
 				F57E03AD1CB1312100FFF2D5 /* GameViewController.mm */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		F5AB65001CB396EE007A8EA7 /* GameMath */ = {
+			isa = PBXGroup;
+			children = (
+				F5AB65031CB39D18007A8EA7 /* Vector2D */,
+				F5AB64FF1CB396E7007A8EA7 /* GameMath.h */,
+				F5AB65011CB3970C007A8EA7 /* GameMath.cpp */,
+			);
+			name = GameMath;
+			sourceTree = "<group>";
+		};
+		F5AB65031CB39D18007A8EA7 /* Vector2D */ = {
+			isa = PBXGroup;
+			children = (
+				F5AB65041CB39D8A007A8EA7 /* Vec2D.cpp */,
+				F5AB65051CB39D8A007A8EA7 /* Vec2D.h */,
+			);
+			name = Vector2D;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,8 +341,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */,
+				F5AB65021CB3970C007A8EA7 /* GameMath.cpp in Sources */,
 				F57E03AE1CB1312100FFF2D5 /* GameViewController.mm in Sources */,
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,
+				F5AB65061CB39D8A007A8EA7 /* Vec2D.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
