@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*
- File:   Distance.mm
+ File:   Distance.h
  Author: Matt Casanova
  Email:  lazersquad@gmail.com
  Date:   2016/04/05

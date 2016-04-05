@@ -23,6 +23,7 @@
 		F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */; };
 		F5AB650E1CB3A524007A8EA7 /* MtxStack.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB650C1CB3A524007A8EA7 /* MtxStack.mm */; };
 		F5AB65131CB3AA07007A8EA7 /* Distance.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65111CB3AA07007A8EA7 /* Distance.mm */; };
+		F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		F5AB650D1CB3A524007A8EA7 /* MtxStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MtxStack.h; path = Source/MtxStack.h; sourceTree = "<group>"; };
 		F5AB65111CB3AA07007A8EA7 /* Distance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Distance.mm; path = Source/Distance.mm; sourceTree = "<group>"; };
 		F5AB65121CB3AA07007A8EA7 /* Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distance.h; path = Source/Distance.h; sourceTree = "<group>"; };
+		F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Intersect.mm; path = Source/Intersect.mm; sourceTree = "<group>"; };
+		F5AB65151CB3B2B0007A8EA7 /* Intersect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Intersect.h; path = Source/Intersect.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +204,7 @@
 		F5AB65001CB396EE007A8EA7 /* MathHelp */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB65101CB3A9E6007A8EA7 /* Intersection */,
+				F5AB65101CB3A9E6007A8EA7 /* Intersect */,
 				F5AB650F1CB3A9E1007A8EA7 /* Distance */,
 				F5AB650B1CB3A4DB007A8EA7 /* MtxStack */,
 				F5AB65071CB3A0F5007A8EA7 /* Mtx44 */,
@@ -248,11 +251,13 @@
 			name = Distance;
 			sourceTree = "<group>";
 		};
-		F5AB65101CB3A9E6007A8EA7 /* Intersection */ = {
+		F5AB65101CB3A9E6007A8EA7 /* Intersect */ = {
 			isa = PBXGroup;
 			children = (
+				F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */,
+				F5AB65151CB3B2B0007A8EA7 /* Intersect.h */,
 			);
-			name = Intersection;
+			name = Intersect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +395,7 @@
 				F5AB65131CB3AA07007A8EA7 /* Distance.mm in Sources */,
 				F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */,
 				F5AB65021CB3970C007A8EA7 /* GameMath.mm in Sources */,
+				F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */,
 				F57E03AE1CB1312100FFF2D5 /* GameViewController.mm in Sources */,
 				F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */,
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,
