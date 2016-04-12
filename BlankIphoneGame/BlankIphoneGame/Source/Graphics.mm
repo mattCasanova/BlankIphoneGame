@@ -15,15 +15,36 @@ namespace
 {
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
   
-  
-// Attribute index.
-enum
+void ShaderDebugPrint(GLuint shader, NSString* header)
 {
-  ATTRIB_VERTEX,
-  NUM_ATTRIBUTES
-};
-  
-  
+  GLint logLength;
+  glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0)
+  {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetShaderInfoLog(shader, logLength, &logLength, log);
+    NSLog(@"%@:\n%s",header, log);
+    free(log);
+  }
+}
+void ProgDebugPrint(GLuint prog, NSString* header)
+{
+  GLint logLength;
+  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0)
+  {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetProgramInfoLog(prog, logLength, &logLength, log);
+    NSLog(@"%@:\n%s", header, log);
+    free(log);
+  }
+}
+bool GetProgramStatus(GLuint prog, GLenum type)
+{
+  GLint status;
+  glGetProgramiv(prog, type, &status);
+  return (status == 0)? false : true;
+}
 }//end namespace
 
 MyGraphics::MyGraphics(void)
@@ -88,9 +109,9 @@ void MyGraphics::InitOpenGL(void)
                         stride,
                         BUFFER_OFFSET(3 * sizeof(GLfloat)));
   
-  glBindVertexArrayOES(0);
   
   glUseProgram(m_program);
+  glBindVertexArrayOES(0);
 }
 void MyGraphics::Init(EAGLContext* pContext, float width, float height)
 {
@@ -124,7 +145,8 @@ void MyGraphics::Shutdown(void)
   glDeleteVertexArraysOES(1, &m_vertexArray);
   
   
-  if (m_program) {
+  if (m_program)
+  {
     glDeleteProgram(m_program);
     m_program = 0;
   }
@@ -167,15 +189,18 @@ bool MyGraphics::LoadShaders(void)
   {
     NSLog(@"Failed to link program: %d", m_program);
     
-    if (vertShader) {
+    if (vertShader)
+    {
       glDeleteShader(vertShader);
       vertShader = 0;
     }
-    if (fragShader) {
+    if (fragShader)
+    {
       glDeleteShader(fragShader);
       fragShader = 0;
     }
-    if (m_program) {
+    if (m_program)
+    {
       glDeleteProgram(m_program);
       m_program = 0;
     }
@@ -190,7 +215,7 @@ bool MyGraphics::LoadShaders(void)
   uniforms[UNIFORM_TEX_COORDS]  = glGetUniformLocation(m_program, "texTrans");
   
   
-  // Release vertex and fragment shaders.
+  //After we link we can release vertex and fragment shaders.
   if (vertShader)
   {
     glDetachShader(m_program, vertShader);
@@ -212,7 +237,7 @@ bool MyGraphics::CompileShader(GLuint* shader, GLenum type, NSString* file)
   source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
   if (!source)
   {
-    NSLog(@"Failed to load vertex shader");
+    NSLog(@"Failed to load shader file");
     return false;
   }
   
@@ -221,15 +246,7 @@ bool MyGraphics::CompileShader(GLuint* shader, GLenum type, NSString* file)
   glCompileShader(*shader);
   
 #if defined(DEBUG)
-  GLint logLength;
-  glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0)
-  {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetShaderInfoLog(*shader, logLength, &logLength, log);
-    NSLog(@"Shader compile log:\n%s", log);
-    free(log);
-  }
+  ShaderDebugPrint(*shader, @"Shader Compile Log");
 #endif
   
   glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
@@ -243,50 +260,23 @@ bool MyGraphics::CompileShader(GLuint* shader, GLenum type, NSString* file)
 }
 bool MyGraphics::LinkProgram(GLuint prog)
 {
-  GLint status;
   glLinkProgram(prog);
   
 #if defined(DEBUG)
-  GLint logLength;
-  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0)
-  {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    NSLog(@"Program link log:\n%s", log);
-    free(log);
-  }
+  ProgDebugPrint(prog, @"Program Link Log");
 #endif
   
-  glGetProgramiv(prog, GL_LINK_STATUS, &status);
-  if (status == 0)
-  {
-    return NO;
-  }
-  
-  return YES;
+  return GetProgramStatus(prog, GL_LINK_STATUS);
 }
 bool MyGraphics::ValidateProgram(GLuint prog)
 {
-  GLint logLength, status;
-  
   glValidateProgram(prog);
-  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0)
-  {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    NSLog(@"Program validate log:\n%s", log);
-    free(log);
-  }
+#if defined(DEBUG)
+  ProgDebugPrint(prog, @"Program validate Log");
+#endif
   
-  glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
-  if (status == 0)
-  {
-    return false;
-  }
-  
-  return true;
+  return GetProgramStatus(prog, GL_VALIDATE_STATUS);
+
 }
 void MyGraphics::StartDraw(void)
 {
@@ -298,33 +288,27 @@ void MyGraphics::EndDraw(void)
 {
   glBindVertexArrayOES(0);
 }
-int  MyGraphics::LoadTexture(NSString* textureName)
+int  MyGraphics::LoadTexture(NSString* fileName)
 {
-  NSString* fileName;
-  
-  /*if (m_usingEnglish) {
-    fileName = m_englishNames[textureName];
-  }
-  else
-    fileName = m_koreanNames[textureName];*/
-  
+  //Load image from file
   CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
   if (!spriteImage)
   {
-    NSLog(@"Failed to load image %@", textureName);
+    NSLog(@"Failed to load image %@", fileName);
     exit(1);
   }
   
-  CFDataRef imageData;
-  size_t width  = CGImageGetWidth(spriteImage);
-  size_t height = CGImageGetHeight(spriteImage);
+
+  GLsizei width  = (GLsizei)CGImageGetWidth(spriteImage);
+  GLsizei height = (GLsizei)CGImageGetHeight(spriteImage);
   
+  CFDataRef imageData;
   imageData = CGDataProviderCopyData(CGImageGetDataProvider(spriteImage));
   GLubyte* spriteData = (GLubyte*)CFDataGetBytePtr(imageData);
   
-  int texName;
-  glGenTextures(1, (GLuint*)&texName);
-  glBindTexture(GL_TEXTURE_2D, texName);
+  int textureID;
+  glGenTextures(1, (GLuint*)&textureID);
+  glBindTexture(GL_TEXTURE_2D, textureID);
   
   // use linear filetring
   glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
@@ -332,10 +316,10 @@ int  MyGraphics::LoadTexture(NSString* textureName)
   // clamp to edge
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
   
   CFRelease(imageData);
-  return texName;
+  return textureID;
 }
 void MyGraphics::UnloadTexture(int textureID)
 {

@@ -57,8 +57,8 @@ private:
   float m_bgRed;              //red component of background
   float m_bgGreen;            //green component of background
   float m_bgBlue;             //blue componment of background
-  float m_width;              //screen width
-  float m_height;             //screen height
+  float m_width;              //game width
+  float m_height;             //game height
   
   
   // Uniform index.
@@ -72,7 +72,7 @@ private:
   };
   GLint uniforms[NUM_UNIFORMS];
   
-  //Attributes
+  //shader Attributes
   GLuint m_posAttrib;
   GLuint m_texAttrib;
   
