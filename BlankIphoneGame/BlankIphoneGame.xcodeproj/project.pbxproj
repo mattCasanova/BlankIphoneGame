@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5234F601CBA1801001D6983 /* Graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5234F5E1CBA1801001D6983 /* Graphics.mm */; };
 		F57E03A41CB1312100FFF2D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03A31CB1312100FFF2D5 /* main.m */; };
 		F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03A61CB1312100FFF2D5 /* AppDelegate.m */; };
 		F57E03A91CB1312100FFF2D5 /* Fragment.frag in Resources */ = {isa = PBXBuildFile; fileRef = F57E03A81CB1312100FFF2D5 /* Fragment.frag */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5234F5E1CBA1801001D6983 /* Graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Graphics.mm; path = Source/Graphics.mm; sourceTree = "<group>"; };
+		F5234F5F1CBA1801001D6983 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graphics.h; path = Source/Graphics.h; sourceTree = "<group>"; };
 		F57E039F1CB1312100FFF2D5 /* BlankIphoneGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlankIphoneGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57E03A31CB1312100FFF2D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F57E03A51CB1312100FFF2D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F5234F5D1CBA12BF001D6983 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
+				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
+				F57E03DC1CB13AF400FFF2D5 /* ViewController */,
+				F5AB65001CB396EE007A8EA7 /* MathHelp */,
+			);
+			name = Engine;
+			sourceTree = "<group>";
+		};
 		F57E03961CB1312100FFF2D5 = {
 			isa = PBXGroup;
 			children = (
@@ -127,11 +141,8 @@
 		F57E03A11CB1312100FFF2D5 /* BlankIphoneGame */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB65001CB396EE007A8EA7 /* MathHelp */,
-				F57E03DC1CB13AF400FFF2D5 /* ViewController */,
-				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
+				F5234F5D1CBA12BF001D6983 /* Engine */,
 				F57E03DA1CB1355900FFF2D5 /* AppleFiles */,
-				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
 				F57E03A21CB1312100FFF2D5 /* Supporting Files */,
 			);
 			path = BlankIphoneGame;
@@ -188,6 +199,8 @@
 			children = (
 				F57E03AA1CB1312100FFF2D5 /* Vertex.vert */,
 				F57E03A81CB1312100FFF2D5 /* Fragment.frag */,
+				F5234F5E1CBA1801001D6983 /* Graphics.mm */,
+				F5234F5F1CBA1801001D6983 /* Graphics.h */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -400,6 +413,7 @@
 				F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */,
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,
 				F5AB65061CB39D8A007A8EA7 /* Vec2D.mm in Sources */,
+				F5234F601CBA1801001D6983 /* Graphics.mm in Sources */,
 				F5AB650E1CB3A524007A8EA7 /* MtxStack.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,6 +557,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BlankIphoneGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wall",
+					"-Wextra",
+					"-ansi",
+					"-pedantic",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = virtualmethod.BlankIphoneGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -554,6 +575,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BlankIphoneGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wall",
+					"-Wextra",
+					"-ansi",
+					"-pedantic",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = virtualmethod.BlankIphoneGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

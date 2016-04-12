@@ -367,7 +367,7 @@ namespace Math
     result.m[3][3] = 1;
   }
   void Mtx44MakeView(Mtx44& result, const Vec2D& cameraPos,float cameraDistance,
-                     const Vec2D& up)
+                     const Vec2D& /*up*/)
   {
     //This is what the 3D code should look like.
     
