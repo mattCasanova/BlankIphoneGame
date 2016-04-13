@@ -13,16 +13,17 @@
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
 #import "Graphics.h"
+#import "Mtx44.h"
 
-
+int textureID;
 
 @interface GameViewController ()
 {
-  MyGraphics* m_pGfx;
-  float m_gameWidth;
-  float m_gameHeight;
-  float m_screenWidth;
-  float m_screenHeight;
+  Graphics* m_gfx;
+  float    m_gameWidth;
+  float    m_gameHeight;
+  float    m_screenWidth;
+  float    m_screenHeight;
 }
 @property (strong, nonatomic) EAGLContext* pContext;
 
@@ -71,8 +72,10 @@
     m_gameHeight = m_screenHeight * m_gameWidth/ m_screenWidth;
   }
   
-  m_pGfx = new MyGraphics;
-  m_pGfx->Init(self.pContext, m_gameWidth, m_gameHeight);
+  m_gfx = [[Graphics alloc]initWithContext:self.pContext
+                                     Width:m_gameWidth
+                                    Height:m_gameHeight];
+  textureID = [m_gfx loadTexture: @"Test.png"];
 }
 /******************************************************************************/
 /*
@@ -84,6 +87,8 @@
   //TODO: Do I need to do this in ARC
   if ([EAGLContext currentContext] == self.pContext)
         [EAGLContext setCurrentContext:nil];
+  
+  m_gfx = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,9 +99,7 @@
   {
     self.view = nil;
     
-    m_pGfx->Shutdown();
-    delete m_pGfx;
-    m_pGfx = 0;
+    m_gfx = nil;
     
     if ([EAGLContext currentContext] == self.pContext)
       [EAGLContext setCurrentContext:nil];
@@ -122,9 +125,13 @@
 /******************************************************************************/
 - (void)update
 {
-  m_pGfx->SetBackGroundColor(.5, .5, 1);
-  m_pGfx->StartDraw();
-  m_pGfx->EndDraw();
+  Math::Mtx44 world;
+  Math::Mtx44MakeTransform(world, 100, 100, 0, 300, 300, 0);
+  [m_gfx setBackgroundRed:.5 Green:.5 Blue:1];
+  [m_gfx setTexture:textureID];
+  [m_gfx clearScreen];
+  [m_gfx draw:&world];
+  [m_gfx present];
 }
 
 

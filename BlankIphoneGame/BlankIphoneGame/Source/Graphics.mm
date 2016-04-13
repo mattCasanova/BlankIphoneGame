@@ -11,53 +11,112 @@
 /******************************************************************************/
 #include "Graphics.h"
 
-namespace
-{
+
+//Helper macro for getting byte offset of verts
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
+#define DELETE_SHADER(shader) if(shader){glDeleteShader(shader);shader=0;}
+#define DELETE_PROGRAM(program) if(program){glDeleteProgram(program);program=0;}
+
+static void ShaderDebugPrint(GLuint shader, NSString* header);
+static void ProgDebugPrint(GLuint prog, NSString* header);
+static bool GetProgramStatus(GLuint prog, GLenum type);
+
+// Uniform index.
+enum
+{
+  UNIFORM_MVP_MATRIX,
+  UNIFORM_TEX_SAMPLER,
+  UNIFORM_TEX_COORDS,
+  UNIFORM_COLOR,
+  NUM_UNIFORMS
+};
+
+
+@interface Graphics ()
+{
+  Math::MtxStack m_stack;                 //to pass one matrix to shader
+                                          //TextureMap     m_textures;              //map textures to file names
+  EAGLContext*   m_pContext;              //OpenGL Render Context
+  float          m_bgRed;                 //red component of background
+  float          m_bgGreen;               //green component of background
+  float          m_bgBlue;                //blue componment of background
+  float          m_width;                 //game width
+  float          m_height;                //game height
+  GLuint         m_GLState;               //saved opengl options
+  GLuint         m_vertexBuffer;          //Textured quad mesh
+  GLuint         m_program;               //the shader program
+  GLint          m_uniforms[NUM_UNIFORMS];//Array of shader uniforms
+}
+
+-(void)initOpenGL;
+-(BOOL)loadShaders;
+-(BOOL)compileShader:(GLuint*)shader Type:(GLenum)type FileName:(NSString*)file;
+-(BOOL)linkProgram:(GLuint)program;
+-(BOOL)validateProgram:(GLuint)program;
+
+//typedef std::map<NSString*, NSString*> TextureMap;
+
+
+
+@end
+
+@implementation Graphics
+
+/******************************************************************************/
+/*
+ Contructor for graphics class.
+ */
+/******************************************************************************/
+-(id)initWithContext:(EAGLContext*)context Width:(float)width Height:(float)height
+{
+  self = [super init];
+  if(!self)
+    return nil;
   
-void ShaderDebugPrint(GLuint shader, NSString* header)
-{
-  GLint logLength;
-  glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0)
-  {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetShaderInfoLog(shader, logLength, &logLength, log);
-    NSLog(@"%@:\n%s",header, log);
-    free(log);
-  }
+  //Set class variables
+  m_width    = width;
+  m_height   = height;
+  
+  //Update context
+  m_pContext = context;
+  [EAGLContext setCurrentContext:m_pContext];
+  
+  [self loadShaders];
+  [self initOpenGL];
+  
+  //Set defaults
+  [self setBackgroundRed:1 Green:1 Blue:1];
+  [self setTextureRed:1 Green:1 Blue:1 Alpha:1];
+  [self setTextureScaleX:1 ScaleY:1 TransX:0 TransY:0];
+  //Set up matrix stack
+  m_stack.Clear();
+  Math::Mtx44 proj;
+  Math::Mtx44MakeOrtho(proj, 0, m_width, 0, m_height, 1, -1);
+  m_stack.Load(proj);
+  
+  return self;
 }
-void ProgDebugPrint(GLuint prog, NSString* header)
+/******************************************************************************/
+/*
+ Destructor for graphics class.
+ */
+/******************************************************************************/
+-(void)dealloc
 {
-  GLint logLength;
-  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0)
-  {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    NSLog(@"%@:\n%s", header, log);
-    free(log);
-  }
+  [EAGLContext setCurrentContext:m_pContext];
+  
+  glDeleteBuffers(1, &m_vertexBuffer);
+  glDeleteVertexArraysOES(1, &m_GLState);
+  DELETE_PROGRAM(m_program);
 }
-bool GetProgramStatus(GLuint prog, GLenum type)
-{
-  GLint status;
-  glGetProgramiv(prog, type, &status);
-  return (status == 0)? false : true;
-}
-}//end namespace
-
-MyGraphics::MyGraphics(void)
-{
-}
-MyGraphics::~MyGraphics(void)
-{
-
-}
-void MyGraphics::InitOpenGL(void)
+/******************************************************************************/
+/*
+   Class helper to contain all my openGL initilizations
+*/
+/******************************************************************************/
+-(void)initOpenGL
 {
   //Set drawing state of game
-  
   glDisable(GL_DEPTH_TEST);
   /*Enable textures and texture blending*/
   glEnable(GL_TEXTURE_2D);
@@ -66,8 +125,8 @@ void MyGraphics::InitOpenGL(void)
   glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
   
   //Create vertex array (to save and load my open gl state)
-  glGenVertexArraysOES(1, &m_vertexArray);
-  glBindVertexArrayOES(m_vertexArray);
+  glGenVertexArraysOES(1, &m_GLState);
+  glBindVertexArrayOES(m_GLState);
   
   //Make my vertex buffer
   GLfloat mesh[36] =
@@ -113,132 +172,107 @@ void MyGraphics::InitOpenGL(void)
   glUseProgram(m_program);
   glBindVertexArrayOES(0);
 }
-void MyGraphics::Init(EAGLContext* pContext, float width, float height)
-{
-  //Set class variables
-  m_width    = width;
-  m_height   = height;
-  
-  //Set 
-  SetBackGroundColor(1, 1, 1);
-  SetTextureColor(1, 1, 1, 1);
-  SetTextureCoords(1, 1, 0, 0);
-  
-  //Update context
-  m_pContext = pContext;
-  [EAGLContext setCurrentContext:m_pContext];
-  
-  LoadShaders();
-  InitOpenGL();
-  
-  //Set up matrix stack
-  m_stack.Clear();
-  Math::Mtx44 proj;
-  Math::Mtx44MakeOrtho(proj, 0, m_width, 0, m_height, 1, -1);
-  m_stack.Load(proj);
-}
-void MyGraphics::Shutdown(void)
-{
-  [EAGLContext setCurrentContext:m_pContext];
-  
-  glDeleteBuffers(1, &m_vertexBuffer);
-  glDeleteVertexArraysOES(1, &m_vertexArray);
-  
-  
-  if (m_program)
-  {
-    glDeleteProgram(m_program);
-    m_program = 0;
-  }
-}
-
-bool MyGraphics::LoadShaders(void)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+*/
+/******************************************************************************/
+-(BOOL)loadShaders
 {
   GLuint vertShader, fragShader;
-  NSString *vertShaderPathname, *fragShaderPathname;
+  NSString* vertShaderPathname;
+  NSString* fragShaderPathname;
+  BOOL result = NO;
   
   // Create shader program.
   m_program = glCreateProgram();
   
   // Create and compile vertex shader.
-  vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
-  if (!CompileShader(&vertShader, GL_VERTEX_SHADER, vertShaderPathname))
+  vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Vertex"
+                                                       ofType:@"vert"];
+  result = [self compileShader:&vertShader
+                          Type:GL_VERTEX_SHADER
+                      FileName:vertShaderPathname];
+  
+  if (!result)
   {
     NSLog(@"Failed to compile vertex shader");
-    return false;
+    return NO;
   }
   
   // Create and compile fragment shader.
-  fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"];
-  if (!CompileShader(&fragShader, GL_FRAGMENT_SHADER, fragShaderPathname))
+  fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Fragment"
+                                                       ofType:@"frag"];
+  result = [self compileShader:&fragShader
+                          Type:GL_FRAGMENT_SHADER
+                      FileName:fragShaderPathname];
+  
+  if (!result)
   {
+    DELETE_SHADER(vertShader);
     NSLog(@"Failed to compile fragment shader");
-    return false;
+    return NO;
   }
   
-  glAttachShader(m_program, vertShader);// Attach vertex shader to program.
-  glAttachShader(m_program, fragShader);// Attach fragment shader to program.
+  // Attach shaders to program.
+  glAttachShader(m_program, vertShader);
+  glAttachShader(m_program, fragShader);
   
-  // Bind attribute locations.
-  // This needs to be done prior to linking.
-  glBindAttribLocation(m_program, GLKVertexAttribPosition, "position");
+  // Bind attribute locations. This needs to be done prior to linking.
+  glBindAttribLocation(m_program, GLKVertexAttribPosition,  "position");
   glBindAttribLocation(m_program, GLKVertexAttribTexCoord0, "texCoord");
   
   // Link program.
-  if (!LinkProgram(m_program))
+  result = [self linkProgram:m_program];
+  
+  if (!result)
   {
+    DELETE_SHADER(vertShader);
+    DELETE_SHADER(fragShader);
+    DELETE_PROGRAM(m_program);
     NSLog(@"Failed to link program: %d", m_program);
-    
-    if (vertShader)
-    {
-      glDeleteShader(vertShader);
-      vertShader = 0;
-    }
-    if (fragShader)
-    {
-      glDeleteShader(fragShader);
-      fragShader = 0;
-    }
-    if (m_program)
-    {
-      glDeleteProgram(m_program);
-      m_program = 0;
-    }
-    
-    return false;
+    return NO;
   }
   
   // Get uniform locations.
-  uniforms[UNIFORM_MVP_MATRIX]  = glGetUniformLocation(m_program, "MVPMatrix");
-  uniforms[UNIFORM_TEX_SAMPLER] = glGetUniformLocation(m_program, "sampler");
-  uniforms[UNIFORM_COLOR]       = glGetUniformLocation(m_program, "color");
-  uniforms[UNIFORM_TEX_COORDS]  = glGetUniformLocation(m_program, "texTrans");
+  m_uniforms[UNIFORM_MVP_MATRIX]  = glGetUniformLocation(m_program, "MVPMatrix");
+  m_uniforms[UNIFORM_TEX_SAMPLER] = glGetUniformLocation(m_program, "sampler");
+  m_uniforms[UNIFORM_COLOR]       = glGetUniformLocation(m_program, "color");
+  m_uniforms[UNIFORM_TEX_COORDS]  = glGetUniformLocation(m_program, "texTrans");
   
   
   //After we link we can release vertex and fragment shaders.
   if (vertShader)
   {
     glDetachShader(m_program, vertShader);
-    glDeleteShader(vertShader);
+    DELETE_SHADER(vertShader);
   }
   if (fragShader)
   {
     glDetachShader(m_program, fragShader);
-    glDeleteShader(fragShader);
+    DELETE_SHADER(fragShader);
   }
   
-  return true;
+  return YES;
 }
-bool MyGraphics::CompileShader(GLuint* shader, GLenum type, NSString* file)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+*/
+/******************************************************************************/
+-(BOOL)compileShader:(GLuint*)shader Type:(GLenum)type FileName:(NSString*)file
 {
   GLint status;
   const GLchar *source;
   
-  source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
+  //load text from shader
+  source = (GLchar *)[[NSString stringWithContentsOfFile: file
+                                                encoding: NSUTF8StringEncoding
+                                                   error: nil] UTF8String];
   if (!source)
   {
     NSLog(@"Failed to load shader file");
-    return false;
+    return NO;
   }
   
   *shader = glCreateShader(type);
@@ -253,58 +287,81 @@ bool MyGraphics::CompileShader(GLuint* shader, GLenum type, NSString* file)
   if (status == 0)
   {
     glDeleteShader(*shader);
-    return false;
+    return NO;
   }
   
-  return true;
+  return YES;
 }
-bool MyGraphics::LinkProgram(GLuint prog)
+/******************************************************************************/
+/*
+ Class helper to Link my shaders
+*/
+/******************************************************************************/
+-(BOOL)linkProgram:(GLuint)program
 {
-  glLinkProgram(prog);
+  glLinkProgram(program);
   
 #if defined(DEBUG)
-  ProgDebugPrint(prog, @"Program Link Log");
+  ProgDebugPrint(program, @"Program Link Log");
 #endif
   
-  return GetProgramStatus(prog, GL_LINK_STATUS);
+  return GetProgramStatus(program, GL_LINK_STATUS);
 }
-bool MyGraphics::ValidateProgram(GLuint prog)
+/******************************************************************************/
+/*
+
+ */
+/******************************************************************************/
+-(BOOL)validateProgram:(GLuint)program
 {
-  glValidateProgram(prog);
+  glValidateProgram(program);
 #if defined(DEBUG)
-  ProgDebugPrint(prog, @"Program validate Log");
+  ProgDebugPrint(program, @"Program validate Log");
 #endif
   
-  return GetProgramStatus(prog, GL_VALIDATE_STATUS);
+  return GetProgramStatus(program, GL_VALIDATE_STATUS);
 
 }
-void MyGraphics::StartDraw(void)
+/******************************************************************************/
+/*
+ Must be called before any drawing is done
+*/
+/******************************************************************************/
+-(void)clearScreen
 {
   glClear(GL_COLOR_BUFFER_BIT);
-  glBindVertexArrayOES(m_vertexArray);
+  glBindVertexArrayOES(m_GLState);
   
 }
-void MyGraphics::EndDraw(void)
+/******************************************************************************/
+/*
+Must be called after all drawing is done
+*/
+/******************************************************************************/
+-(void)present
 {
   glBindVertexArrayOES(0);
 }
-int  MyGraphics::LoadTexture(NSString* fileName)
+/******************************************************************************/
+/*
+  Loads a texture from a file
+*/
+/******************************************************************************/
+-(int)loadTexture:(NSString *)fileName
 {
   //Load image from file
-  CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
-  if (!spriteImage)
+  CGImageRef cgImage = [UIImage imageNamed:fileName].CGImage;
+  if (!cgImage)
   {
     NSLog(@"Failed to load image %@", fileName);
     exit(1);
   }
   
-
-  GLsizei width  = (GLsizei)CGImageGetWidth(spriteImage);
-  GLsizei height = (GLsizei)CGImageGetHeight(spriteImage);
+  GLsizei width  = (GLsizei)CGImageGetWidth(cgImage);
+  GLsizei height = (GLsizei)CGImageGetHeight(cgImage);
   
-  CFDataRef imageData;
-  imageData = CGDataProviderCopyData(CGImageGetDataProvider(spriteImage));
-  GLubyte* spriteData = (GLubyte*)CFDataGetBytePtr(imageData);
+  CFDataRef cfData  = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
+  GLubyte* byteData = (GLubyte*)CFDataGetBytePtr(cfData);
   
   int textureID;
   glGenTextures(1, (GLuint*)&textureID);
@@ -316,45 +373,128 @@ int  MyGraphics::LoadTexture(NSString* fileName)
   // clamp to edge
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, byteData);
   
-  CFRelease(imageData);
+  CFRelease(cfData);
   return textureID;
 }
-void MyGraphics::UnloadTexture(int textureID)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+ */
+/******************************************************************************/
+-(void)unloadTexture:(int)textureID
 {
   glDeleteTextures(1, (GLuint*)&textureID);
 }
-void MyGraphics::SetTexture(int textureID)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+ */
+/******************************************************************************/
+-(void)setTexture:(int)textureID
 {
   glBindTexture(GL_TEXTURE_2D, textureID);
-  glUniform1i(uniforms[UNIFORM_TEX_SAMPLER], 0);
+  glUniform1i(m_uniforms[UNIFORM_TEX_SAMPLER], 0);
 }
-void MyGraphics::SetTextureCoords(float scaleX, float scaleY,
-                                  float transX, float transY)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+ */
+/******************************************************************************/
+-(void)setTextureScaleX:(float)sX ScaleY:(float)sY TransX:(float)tX TransY:(float)tY
 {
-  GLfloat coords[4] = {scaleX, scaleY, transX, transY};
-  glUniform4fv(uniforms[UNIFORM_TEX_COORDS], 1, coords);
+  GLfloat coords[4] = {sX, sY, tX, tY};
+  glUniform4fv(m_uniforms[UNIFORM_TEX_COORDS], 1, coords);
 }
-void MyGraphics::SetTextureColor(float red, float green, float blue, float alpha)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+ */
+/******************************************************************************/
+-(void)setTextureRed:(float)red Green:(float)green Blue:(float)blue Alpha:(float)alpha
 {
   GLfloat colors[4] = {red, green, blue, alpha};
-  glUniform4fv(uniforms[UNIFORM_COLOR], 1, colors);
+  glUniform4fv(m_uniforms[UNIFORM_COLOR], 1, colors);
 }
-
-
-void MyGraphics::Draw(const Math::Mtx44& worldMatrix)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+ */
+/******************************************************************************/
+-(void)draw:(const Math::Mtx44 *)world
 {
-  m_stack.Push(worldMatrix);
-  glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, 0, (GLfloat*)m_stack.Top().m);
+  m_stack.Push(*world);
+  glUniformMatrix4fv(m_uniforms[UNIFORM_MVP_MATRIX], 1, 0, (GLfloat*)m_stack.Top().m);
   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
   m_stack.Pop();
 }
-
-void MyGraphics::SetBackGroundColor(float red, float green, float blue)
+/******************************************************************************/
+/*
+ Class helper to Load my shaders
+ */
+/******************************************************************************/
+-(void)setBackgroundRed:(float)red Green:(float)green Blue:(float)blue
 {
   m_bgRed   = red;
   m_bgGreen = green;
-  m_bgBlue = blue;
+  m_bgBlue  = blue;
   glClearColor(m_bgRed, m_bgGreen, m_bgBlue, 1.0f);
 }
+
+@end
+//end of Graphics implementation
+
+/******************************************************************************/
+/*
+ Static Helper Funcitons
+ */
+/******************************************************************************/
+/******************************************************************************/
+/*
+ Helper funciton to print log info if shader doesn't load
+ */
+/******************************************************************************/
+static void ShaderDebugPrint(GLuint shader, NSString* header)
+{
+  GLint logLength;
+  glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0)
+  {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetShaderInfoLog(shader, logLength, &logLength, log);
+    NSLog(@"%@:\n%s",header, log);
+    free(log);
+  }
+}
+/******************************************************************************/
+/*
+ Helper funciton to print log info if program can't link or can't be
+ validated
+ */
+/******************************************************************************/
+static void ProgDebugPrint(GLuint prog, NSString* header)
+{
+  GLint logLength;
+  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0)
+  {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetProgramInfoLog(prog, logLength, &logLength, log);
+    NSLog(@"%@:\n%s", header, log);
+    free(log);
+  }
+}
+/******************************************************************************/
+/*
+ Helper function to get return the status of linking or validating the shader
+ program
+ */
+/******************************************************************************/
+static bool GetProgramStatus(GLuint prog, GLenum type)
+{
+  GLint status;
+  glGetProgramiv(prog, type, &status);
+  return (status == 0)? false : true;
+}
+

@@ -9,9 +9,13 @@
  all it does is set the texture color.
  */
 /******************************************************************************/
-varying lowp vec4 colorVarying;
+//Varying values are sent from vert shader
+varying lowp vec4    colorOut;
+varying mediump vec2 texCoordOut;
+//uniforms don't change per fragment
+uniform sampler2D    sampler;
 
 void main()
 {
-    gl_FragColor = colorVarying;
+  gl_FragColor = texture2D(sampler, texCoordOut) * colorOut;
 }

@@ -25,6 +25,7 @@
 		F5AB650E1CB3A524007A8EA7 /* MtxStack.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB650C1CB3A524007A8EA7 /* MtxStack.mm */; };
 		F5AB65131CB3AA07007A8EA7 /* Distance.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65111CB3AA07007A8EA7 /* Distance.mm */; };
 		F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */; };
+		F5FF0A851CBDEDFD00347403 /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FF0A841CBDEDFD00347403 /* Test.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		F5AB65121CB3AA07007A8EA7 /* Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distance.h; path = Source/Distance.h; sourceTree = "<group>"; };
 		F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Intersect.mm; path = Source/Intersect.mm; sourceTree = "<group>"; };
 		F5AB65151CB3B2B0007A8EA7 /* Intersect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Intersect.h; path = Source/Intersect.h; sourceTree = "<group>"; };
+		F5FF0A841CBDEDFD00347403 /* Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Test.png; path = Textures/Test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		F57E03A11CB1312100FFF2D5 /* BlankIphoneGame */ = {
 			isa = PBXGroup;
 			children = (
+				F5FF0A841CBDEDFD00347403 /* Test.png */,
 				F5234F5D1CBA12BF001D6983 /* Engine */,
 				F57E03DA1CB1355900FFF2D5 /* AppleFiles */,
 				F57E03A21CB1312100FFF2D5 /* Supporting Files */,
@@ -379,6 +382,7 @@
 				F57E03B11CB1312100FFF2D5 /* Main.storyboard in Resources */,
 				F57E03AB1CB1312100FFF2D5 /* Vertex.vert in Resources */,
 				F57E03B31CB1312100FFF2D5 /* Assets.xcassets in Resources */,
+				F5FF0A851CBDEDFD00347403 /* Test.png in Resources */,
 				F57E03B61CB1312100FFF2D5 /* LaunchScreen.storyboard in Resources */,
 				F57E03A91CB1312100FFF2D5 /* Fragment.frag in Resources */,
 			);
