@@ -17,6 +17,8 @@
 #define DELETE_SHADER(shader) if(shader){glDeleteShader(shader);shader=0;}
 #define DELETE_PROGRAM(program) if(program){glDeleteProgram(program);program=0;}
 
+#define STACK_START_SIZE 6
+
 static void ShaderDebugPrint(GLuint shader, NSString* header);
 static void ProgDebugPrint(GLuint prog, NSString* header);
 static bool GetProgramStatus(GLuint prog, GLenum type);
@@ -34,9 +36,8 @@ enum
 
 @interface Graphics ()
 {
-  Math::MtxStack m_stack;                 //to pass one matrix to shader
-                                          //TextureMap     m_textures;              //map textures to file names
-  EAGLContext*   m_pContext;              //OpenGL Render Context
+  MtxStack*      m_stack;                 //to pass one matrix to shader
+  //TextureMap     m_textures;              //map textures to file names
   float          m_bgRed;                 //red component of background
   float          m_bgGreen;               //green component of background
   float          m_bgBlue;                //blue componment of background
@@ -67,7 +68,7 @@ enum
  Contructor for graphics class.
  */
 /******************************************************************************/
--(id)initWithContext:(EAGLContext*)context Width:(float)width Height:(float)height
+-(Graphics*)initWithWidth:(float)width Height:(float)height
 {
   self = [super init];
   if(!self)
@@ -77,9 +78,6 @@ enum
   m_width    = width;
   m_height   = height;
   
-  //Update context
-  m_pContext = context;
-  [EAGLContext setCurrentContext:m_pContext];
   
   [self loadShaders];
   [self initOpenGL];
@@ -89,10 +87,10 @@ enum
   [self setTextureRed:1 Green:1 Blue:1 Alpha:1];
   [self setTextureScaleX:1 ScaleY:1 TransX:0 TransY:0];
   //Set up matrix stack
-  m_stack.Clear();
-  Math::Mtx44 proj;
-  Math::Mtx44MakeOrtho(proj, 0, m_width, 0, m_height, 1, -1);
-  m_stack.Load(proj);
+  m_stack = [[MtxStack alloc]initWithStartSize:STACK_START_SIZE];
+  Mtx44 proj;
+  Mtx44MakeOrtho(&proj, 0, m_width, 0, m_height, 1, -1);
+  [m_stack load:&proj];
   
   return self;
 }
@@ -103,8 +101,6 @@ enum
 /******************************************************************************/
 -(void)dealloc
 {
-  [EAGLContext setCurrentContext:m_pContext];
-  
   glDeleteBuffers(1, &m_vertexBuffer);
   glDeleteVertexArraysOES(1, &m_GLState);
   DELETE_PROGRAM(m_program);
@@ -129,8 +125,7 @@ enum
   glBindVertexArrayOES(m_GLState);
   
   //Make my vertex buffer
-  GLfloat mesh[36] =
-  {
+  GLfloat mesh[36] = {
     // Data layout for each line below is:
     // positionX, positionY, positionZ, tu, tv
     -0.5f,  -0.5f, 0.0f,   0.0f, 0.0f,  //bot left
@@ -422,12 +417,13 @@ Must be called after all drawing is done
  Class helper to Load my shaders
  */
 /******************************************************************************/
--(void)draw:(const Math::Mtx44 *)world
+-(void)draw:(const Mtx44*)world
 {
-  m_stack.Push(*world);
-  glUniformMatrix4fv(m_uniforms[UNIFORM_MVP_MATRIX], 1, 0, (GLfloat*)m_stack.Top().m);
+  [m_stack push: world];
+  const Mtx44* top = [m_stack top];
+  glUniformMatrix4fv(m_uniforms[UNIFORM_MVP_MATRIX], 1, 0, (GLfloat*)top);
   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-  m_stack.Pop();
+  [m_stack pop];
 }
 /******************************************************************************/
 /*
@@ -444,6 +440,8 @@ Must be called after all drawing is done
 
 @end
 //end of Graphics implementation
+
+
 
 /******************************************************************************/
 /*

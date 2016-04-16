@@ -13,6 +13,7 @@
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
 #import "Graphics.h"
+#import "GameMgr.h"
 #import "Mtx44.h"
 
 int textureID;
@@ -47,6 +48,7 @@ int textureID;
   self.pContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
   if (!self.pContext)
     NSLog(@"Failed to create ES context");
+  [EAGLContext setCurrentContext:self.pContext];
   
 
   //configure the current view for our game
@@ -72,9 +74,7 @@ int textureID;
     m_gameHeight = m_screenHeight * m_gameWidth/ m_screenWidth;
   }
   
-  m_gfx = [[Graphics alloc]initWithContext:self.pContext
-                                     Width:m_gameWidth
-                                    Height:m_gameHeight];
+  m_gfx = [[Graphics alloc]initWithWidth:m_gameWidth Height:m_gameHeight];
   textureID = [m_gfx loadTexture: @"Test.png"];
 }
 /******************************************************************************/
@@ -98,8 +98,7 @@ int textureID;
   if ([self isViewLoaded] && ([[self view] window] == nil))
   {
     self.view = nil;
-    
-    m_gfx = nil;
+    m_gfx     = nil;
     
     if ([EAGLContext currentContext] == self.pContext)
       [EAGLContext setCurrentContext:nil];
@@ -125,8 +124,10 @@ int textureID;
 /******************************************************************************/
 - (void)update
 {
-  Math::Mtx44 world;
-  Math::Mtx44MakeTransform(world, 100, 100, 0, 300, 300, 0);
+  static float rot = 0;
+  rot += .05f;
+  Mtx44 world;
+  Mtx44MakeTransform(&world, 200, 200, rot, 300, 300, 0);
   [m_gfx setBackgroundRed:.5 Green:.5 Blue:1];
   [m_gfx setTexture:textureID];
   [m_gfx clearScreen];

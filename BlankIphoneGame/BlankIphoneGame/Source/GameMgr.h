@@ -1,13 +1,35 @@
-//
-//  GameMgr.h
-//  BlankIphoneGame
-//
-//  Created by Matt Casanova on 4/14/16.
-//  Copyright © 2016 Virtual Method. All rights reserved.
-//
+/******************************************************************************/
+/*
+ File:   GameMgr.h
+ Author: Matt Casanova
+ Email:  lazersquad@gmail.com
+ Date:   2016/04/14
+ 
 
-#ifndef GameMgr_h
-#define GameMgr_h
+ The Game Manager is resposible for state switching, managing core engine 
+ components and holding shared game data.
+ */
+/******************************************************************************/
+#ifndef GAME_MGR_H
+#define GAME_MGR_H
 
+#import <Foundation/Foundation.h>
+#import "StageType.h"
+#import "Graphics.h"
+
+@interface GameMgr : NSObject
+
+-(GameMgr*)initWithWidth:(float)width
+                  Height:(float)height
+              StartStage:(StageType)stageId;
+-(void)update:(float)dt;
+-(void)shutdown;
+
+
+-(void)setNextStage:(StageType) stageId;
+
+@property(nonatomic, readonly) Graphics* gfx;
+
+@end
 
 #endif /* GameMgr_h */

@@ -25,6 +25,7 @@
 		F5AB650E1CB3A524007A8EA7 /* MtxStack.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB650C1CB3A524007A8EA7 /* MtxStack.mm */; };
 		F5AB65131CB3AA07007A8EA7 /* Distance.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65111CB3AA07007A8EA7 /* Distance.mm */; };
 		F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */; };
+		F5BFBCBF1CBFB44B00445653 /* GameMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BFBCBE1CBFB44B00445653 /* GameMgr.m */; };
 		F5FF0A851CBDEDFD00347403 /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FF0A841CBDEDFD00347403 /* Test.png */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,10 @@
 		F5AB65121CB3AA07007A8EA7 /* Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distance.h; path = Source/Distance.h; sourceTree = "<group>"; };
 		F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Intersect.mm; path = Source/Intersect.mm; sourceTree = "<group>"; };
 		F5AB65151CB3B2B0007A8EA7 /* Intersect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Intersect.h; path = Source/Intersect.h; sourceTree = "<group>"; };
+		F5BFBCBD1CBFB42400445653 /* GameMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMgr.h; path = Source/GameMgr.h; sourceTree = "<group>"; };
+		F5BFBCBE1CBFB44B00445653 /* GameMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMgr.m; path = Source/GameMgr.m; sourceTree = "<group>"; };
+		F5BFBCC01CBFB68800445653 /* StageType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StageType.h; path = Source/StageType.h; sourceTree = "<group>"; };
+		F5EF56221CC0B9A6004589EE /* Stage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Stage.h; path = Source/Stage.h; sourceTree = "<group>"; };
 		F5FF0A841CBDEDFD00347403 /* Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Test.png; path = Textures/Test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +116,7 @@
 		F5234F5D1CBA12BF001D6983 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F5BFBCBA1CBFB3C100445653 /* GameMgr */,
 				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
 				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
 				F57E03DC1CB13AF400FFF2D5 /* ViewController */,
@@ -276,6 +282,17 @@
 			name = Intersect;
 			sourceTree = "<group>";
 		};
+		F5BFBCBA1CBFB3C100445653 /* GameMgr */ = {
+			isa = PBXGroup;
+			children = (
+				F5BFBCC01CBFB68800445653 /* StageType.h */,
+				F5BFBCBD1CBFB42400445653 /* GameMgr.h */,
+				F5BFBCBE1CBFB44B00445653 /* GameMgr.m */,
+				F5EF56221CC0B9A6004589EE /* Stage.h */,
+			);
+			name = GameMgr;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,6 +430,7 @@
 				F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */,
 				F5AB65021CB3970C007A8EA7 /* GameMath.mm in Sources */,
 				F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */,
+				F5BFBCBF1CBFB44B00445653 /* GameMgr.m in Sources */,
 				F57E03AE1CB1312100FFF2D5 /* GameViewController.mm in Sources */,
 				F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */,
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,

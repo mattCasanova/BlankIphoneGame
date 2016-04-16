@@ -9,31 +9,27 @@
  matricies for my shaders.
  */
 /******************************************************************************/
-#ifndef MtxStack_h
-#define MtxStack_h
+#ifndef MTXSTACK_H
+#define MTXSTACK_H
 
 
-#include "Mtx44.h"
-#include <stack>
+#import <Foundation/Foundation.h>
+#import "Mtx44.h"
 
-namespace Math
-{
-  /*A matrix stack that will multiply as a matrix get pushed onto it.*/
-  class MtxStack
-  {
-  public:
-    const Mtx44& Top(void) const;
-    
-    void Load(const Mtx44& mtx);
-    void Push(const Mtx44& mtx);
-    void Pop(void);
-    void Clear(void);
-    int  Size(void) const;
-    
-  private:
-    std::stack<Mtx44> m_stack;
-  };
 
-}//end namespace math
+@interface MtxStack : NSObject
 
-#endif /* MtxStack_h */
+-(MtxStack*)initWithStartSize:(int)startSize;
+-(void)dealloc;
+
+-(const Mtx44*)top;
+-(void)load:(const Mtx44*)mtx;
+-(void)push:(const Mtx44*)mtx;
+-(void)pop;
+-(void)clear;
+-(BOOL)isEmpty;
+
+@end
+
+
+#endif /* MTXSTACK_H */
