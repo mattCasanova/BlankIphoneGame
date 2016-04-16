@@ -14,21 +14,19 @@
 
 #include "Vec2D.h"
 
-namespace Intersect
-{
-  bool PointCircle(const Math::Vec2D& point, const Math::Vec2D& center, float radius);
-  bool PointRect(const Math::Vec2D& point, const Math::Vec2D& center,
+bool IntersectPointCircle(const Vec2* point, const Vec2* center, float radius);
+bool IntersectPointRect(const Vec2* point, const Vec2* center,
                 float width, float height);
-  bool CircleCircle(const Math::Vec2D& center0, float radius0,
-                    const Math::Vec2D& center1, float radius1);
-  bool CircleRect(const Math::Vec2D& circleCenter, float radius,
-                  const Math::Vec2D& rectCenter, float width, float height);
-  bool CircleLine(const Math::Vec2D& center, float radius,
-                  const Math::Vec2D& start, const Math::Vec2D& end);
+bool IntersectCircleCircle(const Vec2* center0, float radius0,
+                    const Vec2* center1, float radius1);
+bool IntersectCircleRect(const Vec2* circleCenter, float radius,
+                  const Vec2* rectCenter, float width, float height);
+bool IntersectCircleLine(const Vec2* center, float radius,
+                  const Vec2* start, const Vec2* end);
   
-  bool RectRect(const Math::Vec2D& center0, float width0, float height0,
-                const Math::Vec2D& center1, float width1, float height1);
-}//end namespace Intersect
+bool IntersectRectRect(const Vec2* center0, float width0, float height0,
+                const Vec2* center1, float width1, float height1);
+
 
 
 #endif /* Intersect_h */
