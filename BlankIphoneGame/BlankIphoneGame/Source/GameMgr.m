@@ -38,10 +38,11 @@
   m_isQuitting = NO;
   m_curr       = stageId;
   m_next       = stageId;
+   _gfx = [[Graphics alloc]initWithWidth:width Height:height];
   m_stage      = [[InitStage alloc]init];
   [m_stage initilizeWithMgr:self];
   
-  _gfx = [[Graphics alloc]initWithWidth:width Height:height];
+ 
   
 
   return self;
