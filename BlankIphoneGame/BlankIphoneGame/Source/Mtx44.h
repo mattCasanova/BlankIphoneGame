@@ -21,8 +21,8 @@
  |Tx Ty Tz 1 |
  \endverbatim
  */
-const int MTX44_ROWS   = 4;/*! The number of rows in the matrix*/
-const int MTX44_COLS   = 4;/*! The number of columns in the matrix*/
+static const int MTX44_ROWS   = 4;/*! The number of rows in the matrix*/
+static const int MTX44_COLS   = 4;/*! The number of columns in the matrix*/
 
 typedef struct Mtx44_t
 {
@@ -41,7 +41,7 @@ void Mtx44MakeTransform(Mtx44* result, float scaleX, float scaleY, float radians
 void Mtx44MakePerspective(Mtx44* result, float fovDegree, float aspect, float near, float far);
 void Mtx44MakeOrtho(Mtx44* result, float left, float right, float top, float bottom, float near, float far);
 void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance,const Vec2* up);
-bool Mtx44Equal(const Mtx44* pMtx1, const Mtx44* pMtx2);
+int Mtx44Equal(const Mtx44* pMtx1, const Mtx44* pMtx2);
 
 
 #endif /* MTX44_H */

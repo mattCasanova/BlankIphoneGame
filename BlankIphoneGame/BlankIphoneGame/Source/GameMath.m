@@ -119,10 +119,10 @@ float Max( float x, float y )
  True if x is in the range, false otherwise.
  */
 /******************************************************************************/
-bool InRange( float x, float low, float high )
+int InRange( float x, float low, float high )
 {
-  bool xEqualsLow  = FloatIsEqual(x, low);
-  bool xEqualsHigh = FloatIsEqual(x, high);
+  int xEqualsLow  = FloatIsEqual(x, low);
+  int xEqualsHigh = FloatIsEqual(x, high);
   
   return ( (x > low || xEqualsLow) && (x < high || xEqualsHigh) );
 }
@@ -140,7 +140,7 @@ bool InRange( float x, float low, float high )
  True if the values are equal within EPSILON, false otherwise.
  */
 /******************************************************************************/
-bool FloatIsEqual(float x, float y)
+int FloatIsEqual(float x, float y)
 {
   return (fabsf(x - y) < EPSILON);
 }
@@ -156,7 +156,7 @@ bool FloatIsEqual(float x, float y)
  True if the number is a power of two.  False otherwise.
  */
 /******************************************************************************/
-bool IsPowerOf2(int x)
+int IsPowerOf2(int x)
 {
   /*make sure it is a positive number
    Then, since a power of two only has one bit turned on, if we subtract 1 and

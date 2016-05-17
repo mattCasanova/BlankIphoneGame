@@ -7,24 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F5234F601CBA1801001D6983 /* Graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5234F5E1CBA1801001D6983 /* Graphics.mm */; };
+		F5234F601CBA1801001D6983 /* Graphics.m in Sources */ = {isa = PBXBuildFile; fileRef = F5234F5E1CBA1801001D6983 /* Graphics.m */; };
+		F540F1941CC1E5990082FF6F /* InitStage.m in Sources */ = {isa = PBXBuildFile; fileRef = F540F1931CC1E5990082FF6F /* InitStage.m */; };
 		F57E03A41CB1312100FFF2D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03A31CB1312100FFF2D5 /* main.m */; };
 		F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03A61CB1312100FFF2D5 /* AppDelegate.m */; };
 		F57E03A91CB1312100FFF2D5 /* Fragment.frag in Resources */ = {isa = PBXBuildFile; fileRef = F57E03A81CB1312100FFF2D5 /* Fragment.frag */; };
 		F57E03AB1CB1312100FFF2D5 /* Vertex.vert in Resources */ = {isa = PBXBuildFile; fileRef = F57E03AA1CB1312100FFF2D5 /* Vertex.vert */; };
-		F57E03AE1CB1312100FFF2D5 /* GameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F57E03AD1CB1312100FFF2D5 /* GameViewController.mm */; };
+		F57E03AE1CB1312100FFF2D5 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03AD1CB1312100FFF2D5 /* GameViewController.m */; };
 		F57E03B11CB1312100FFF2D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57E03AF1CB1312100FFF2D5 /* Main.storyboard */; };
 		F57E03B31CB1312100FFF2D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57E03B21CB1312100FFF2D5 /* Assets.xcassets */; };
 		F57E03B61CB1312100FFF2D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57E03B41CB1312100FFF2D5 /* LaunchScreen.storyboard */; };
 		F57E03C11CB1312100FFF2D5 /* BlankIphoneGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03C01CB1312100FFF2D5 /* BlankIphoneGameTests.m */; };
 		F57E03CC1CB1312100FFF2D5 /* BlankIphoneGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03CB1CB1312100FFF2D5 /* BlankIphoneGameUITests.m */; };
 		F5AB64FE1CB39526007A8EA7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AB64FD1CB39526007A8EA7 /* GLKit.framework */; };
-		F5AB65021CB3970C007A8EA7 /* GameMath.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65011CB3970C007A8EA7 /* GameMath.mm */; };
-		F5AB65061CB39D8A007A8EA7 /* Vec2D.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65041CB39D8A007A8EA7 /* Vec2D.mm */; };
-		F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */; };
-		F5AB650E1CB3A524007A8EA7 /* MtxStack.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB650C1CB3A524007A8EA7 /* MtxStack.mm */; };
-		F5AB65131CB3AA07007A8EA7 /* Distance.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65111CB3AA07007A8EA7 /* Distance.mm */; };
-		F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */; };
+		F5AB65021CB3970C007A8EA7 /* GameMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65011CB3970C007A8EA7 /* GameMath.m */; };
+		F5AB65061CB39D8A007A8EA7 /* Vec2D.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65041CB39D8A007A8EA7 /* Vec2D.m */; };
+		F5AB650A1CB3A10B007A8EA7 /* Mtx44.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65081CB3A10B007A8EA7 /* Mtx44.m */; };
+		F5AB650E1CB3A524007A8EA7 /* MtxStack.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB650C1CB3A524007A8EA7 /* MtxStack.m */; };
+		F5AB65131CB3AA07007A8EA7 /* Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65111CB3AA07007A8EA7 /* Distance.m */; };
+		F5AB65161CB3B2B0007A8EA7 /* Intersect.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65141CB3B2B0007A8EA7 /* Intersect.m */; };
 		F5BFBCBF1CBFB44B00445653 /* GameMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BFBCBE1CBFB44B00445653 /* GameMgr.m */; };
 		F5FF0A851CBDEDFD00347403 /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FF0A841CBDEDFD00347403 /* Test.png */; };
 /* End PBXBuildFile section */
@@ -47,8 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F5234F5E1CBA1801001D6983 /* Graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Graphics.mm; path = Source/Graphics.mm; sourceTree = "<group>"; };
+		F5234F5E1CBA1801001D6983 /* Graphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Graphics.m; path = Source/Graphics.m; sourceTree = "<group>"; };
 		F5234F5F1CBA1801001D6983 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graphics.h; path = Source/Graphics.h; sourceTree = "<group>"; };
+		F540F1921CC1E5990082FF6F /* InitStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitStage.h; path = Source/InitStage.h; sourceTree = "<group>"; };
+		F540F1931CC1E5990082FF6F /* InitStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitStage.m; path = Source/InitStage.m; sourceTree = "<group>"; };
 		F57E039F1CB1312100FFF2D5 /* BlankIphoneGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlankIphoneGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57E03A31CB1312100FFF2D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F57E03A51CB1312100FFF2D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,7 +59,7 @@
 		F57E03A81CB1312100FFF2D5 /* Fragment.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Fragment.frag; path = Shaders/Fragment.frag; sourceTree = "<group>"; };
 		F57E03AA1CB1312100FFF2D5 /* Vertex.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Vertex.vert; path = Shaders/Vertex.vert; sourceTree = "<group>"; };
 		F57E03AC1CB1312100FFF2D5 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		F57E03AD1CB1312100FFF2D5 /* GameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameViewController.mm; sourceTree = "<group>"; };
+		F57E03AD1CB1312100FFF2D5 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		F57E03B01CB1312100FFF2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F57E03B21CB1312100FFF2D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F57E03B51CB1312100FFF2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,16 +72,16 @@
 		F57E03CD1CB1312100FFF2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5AB64FD1CB39526007A8EA7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		F5AB64FF1CB396E7007A8EA7 /* GameMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMath.h; path = Source/GameMath.h; sourceTree = "<group>"; };
-		F5AB65011CB3970C007A8EA7 /* GameMath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameMath.mm; path = Source/GameMath.mm; sourceTree = "<group>"; };
-		F5AB65041CB39D8A007A8EA7 /* Vec2D.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Vec2D.mm; path = Source/Vec2D.mm; sourceTree = "<group>"; };
+		F5AB65011CB3970C007A8EA7 /* GameMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMath.m; path = Source/GameMath.m; sourceTree = "<group>"; };
+		F5AB65041CB39D8A007A8EA7 /* Vec2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Vec2D.m; path = Source/Vec2D.m; sourceTree = "<group>"; };
 		F5AB65051CB39D8A007A8EA7 /* Vec2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec2D.h; path = Source/Vec2D.h; sourceTree = "<group>"; };
-		F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mtx44.mm; path = Source/Mtx44.mm; sourceTree = "<group>"; };
+		F5AB65081CB3A10B007A8EA7 /* Mtx44.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mtx44.m; path = Source/Mtx44.m; sourceTree = "<group>"; };
 		F5AB65091CB3A10B007A8EA7 /* Mtx44.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mtx44.h; path = Source/Mtx44.h; sourceTree = "<group>"; };
-		F5AB650C1CB3A524007A8EA7 /* MtxStack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MtxStack.mm; path = Source/MtxStack.mm; sourceTree = "<group>"; };
+		F5AB650C1CB3A524007A8EA7 /* MtxStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MtxStack.m; path = Source/MtxStack.m; sourceTree = "<group>"; };
 		F5AB650D1CB3A524007A8EA7 /* MtxStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MtxStack.h; path = Source/MtxStack.h; sourceTree = "<group>"; };
-		F5AB65111CB3AA07007A8EA7 /* Distance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Distance.mm; path = Source/Distance.mm; sourceTree = "<group>"; };
+		F5AB65111CB3AA07007A8EA7 /* Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Distance.m; path = Source/Distance.m; sourceTree = "<group>"; };
 		F5AB65121CB3AA07007A8EA7 /* Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distance.h; path = Source/Distance.h; sourceTree = "<group>"; };
-		F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Intersect.mm; path = Source/Intersect.mm; sourceTree = "<group>"; };
+		F5AB65141CB3B2B0007A8EA7 /* Intersect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Intersect.m; path = Source/Intersect.m; sourceTree = "<group>"; };
 		F5AB65151CB3B2B0007A8EA7 /* Intersect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Intersect.h; path = Source/Intersect.h; sourceTree = "<group>"; };
 		F5BFBCBD1CBFB42400445653 /* GameMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMgr.h; path = Source/GameMgr.h; sourceTree = "<group>"; };
 		F5BFBCBE1CBFB44B00445653 /* GameMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMgr.m; path = Source/GameMgr.m; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 		F5234F5D1CBA12BF001D6983 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F540F1911CC1E5600082FF6F /* Stages */,
 				F5BFBCBA1CBFB3C100445653 /* GameMgr */,
 				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
 				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
@@ -123,6 +127,25 @@
 				F5AB65001CB396EE007A8EA7 /* MathHelp */,
 			);
 			name = Engine;
+			sourceTree = "<group>";
+		};
+		F540F1911CC1E5600082FF6F /* Stages */ = {
+			isa = PBXGroup;
+			children = (
+				F540F1951CC1E5A60082FF6F /* InitStage */,
+				F5EF56221CC0B9A6004589EE /* Stage.h */,
+				F5BFBCC01CBFB68800445653 /* StageType.h */,
+			);
+			name = Stages;
+			sourceTree = "<group>";
+		};
+		F540F1951CC1E5A60082FF6F /* InitStage */ = {
+			isa = PBXGroup;
+			children = (
+				F540F1921CC1E5990082FF6F /* InitStage.h */,
+				F540F1931CC1E5990082FF6F /* InitStage.m */,
+			);
+			name = InitStage;
 			sourceTree = "<group>";
 		};
 		F57E03961CB1312100FFF2D5 = {
@@ -208,7 +231,7 @@
 			children = (
 				F57E03AA1CB1312100FFF2D5 /* Vertex.vert */,
 				F57E03A81CB1312100FFF2D5 /* Fragment.frag */,
-				F5234F5E1CBA1801001D6983 /* Graphics.mm */,
+				F5234F5E1CBA1801001D6983 /* Graphics.m */,
 				F5234F5F1CBA1801001D6983 /* Graphics.h */,
 			);
 			name = Graphics;
@@ -218,7 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				F57E03AC1CB1312100FFF2D5 /* GameViewController.h */,
-				F57E03AD1CB1312100FFF2D5 /* GameViewController.mm */,
+				F57E03AD1CB1312100FFF2D5 /* GameViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -232,7 +255,7 @@
 				F5AB65071CB3A0F5007A8EA7 /* Mtx44 */,
 				F5AB65031CB39D18007A8EA7 /* Vector2D */,
 				F5AB64FF1CB396E7007A8EA7 /* GameMath.h */,
-				F5AB65011CB3970C007A8EA7 /* GameMath.mm */,
+				F5AB65011CB3970C007A8EA7 /* GameMath.m */,
 			);
 			name = MathHelp;
 			sourceTree = "<group>";
@@ -240,7 +263,7 @@
 		F5AB65031CB39D18007A8EA7 /* Vector2D */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB65041CB39D8A007A8EA7 /* Vec2D.mm */,
+				F5AB65041CB39D8A007A8EA7 /* Vec2D.m */,
 				F5AB65051CB39D8A007A8EA7 /* Vec2D.h */,
 			);
 			name = Vector2D;
@@ -249,7 +272,7 @@
 		F5AB65071CB3A0F5007A8EA7 /* Mtx44 */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB65081CB3A10B007A8EA7 /* Mtx44.mm */,
+				F5AB65081CB3A10B007A8EA7 /* Mtx44.m */,
 				F5AB65091CB3A10B007A8EA7 /* Mtx44.h */,
 			);
 			name = Mtx44;
@@ -258,7 +281,7 @@
 		F5AB650B1CB3A4DB007A8EA7 /* MtxStack */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB650C1CB3A524007A8EA7 /* MtxStack.mm */,
+				F5AB650C1CB3A524007A8EA7 /* MtxStack.m */,
 				F5AB650D1CB3A524007A8EA7 /* MtxStack.h */,
 			);
 			name = MtxStack;
@@ -267,7 +290,7 @@
 		F5AB650F1CB3A9E1007A8EA7 /* Distance */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB65111CB3AA07007A8EA7 /* Distance.mm */,
+				F5AB65111CB3AA07007A8EA7 /* Distance.m */,
 				F5AB65121CB3AA07007A8EA7 /* Distance.h */,
 			);
 			name = Distance;
@@ -276,7 +299,7 @@
 		F5AB65101CB3A9E6007A8EA7 /* Intersect */ = {
 			isa = PBXGroup;
 			children = (
-				F5AB65141CB3B2B0007A8EA7 /* Intersect.mm */,
+				F5AB65141CB3B2B0007A8EA7 /* Intersect.m */,
 				F5AB65151CB3B2B0007A8EA7 /* Intersect.h */,
 			);
 			name = Intersect;
@@ -285,10 +308,8 @@
 		F5BFBCBA1CBFB3C100445653 /* GameMgr */ = {
 			isa = PBXGroup;
 			children = (
-				F5BFBCC01CBFB68800445653 /* StageType.h */,
 				F5BFBCBD1CBFB42400445653 /* GameMgr.h */,
 				F5BFBCBE1CBFB44B00445653 /* GameMgr.m */,
-				F5EF56221CC0B9A6004589EE /* Stage.h */,
 			);
 			name = GameMgr;
 			sourceTree = "<group>";
@@ -426,17 +447,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5AB65131CB3AA07007A8EA7 /* Distance.mm in Sources */,
+				F5AB65131CB3AA07007A8EA7 /* Distance.m in Sources */,
 				F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */,
-				F5AB65021CB3970C007A8EA7 /* GameMath.mm in Sources */,
-				F5AB65161CB3B2B0007A8EA7 /* Intersect.mm in Sources */,
+				F540F1941CC1E5990082FF6F /* InitStage.m in Sources */,
+				F5AB65021CB3970C007A8EA7 /* GameMath.m in Sources */,
+				F5AB65161CB3B2B0007A8EA7 /* Intersect.m in Sources */,
 				F5BFBCBF1CBFB44B00445653 /* GameMgr.m in Sources */,
-				F57E03AE1CB1312100FFF2D5 /* GameViewController.mm in Sources */,
-				F5AB650A1CB3A10B007A8EA7 /* Mtx44.mm in Sources */,
+				F57E03AE1CB1312100FFF2D5 /* GameViewController.m in Sources */,
+				F5AB650A1CB3A10B007A8EA7 /* Mtx44.m in Sources */,
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,
-				F5AB65061CB39D8A007A8EA7 /* Vec2D.mm in Sources */,
-				F5234F601CBA1801001D6983 /* Graphics.mm in Sources */,
-				F5AB650E1CB3A524007A8EA7 /* MtxStack.mm in Sources */,
+				F5AB65061CB39D8A007A8EA7 /* Vec2D.m in Sources */,
+				F5234F601CBA1801001D6983 /* Graphics.m in Sources */,
+				F5AB650E1CB3A524007A8EA7 /* MtxStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -357,7 +357,7 @@ float Vec2DistanceSquared( const Vec2* vec1, const Vec2* vec2 )
  True if the Vec2 are the same, false otherwise.
  */
 /******************************************************************************/
-bool Vec2Equal( const Vec2* vec1, const Vec2* vec2 )
+int Vec2Equal( const Vec2* vec1, const Vec2* vec2 )
 {
   /*Test if the difference is really close to zero*/
   return (fabsf(vec1->x-vec2->x) < EPSILON && fabsf(vec1->y-vec2->y) < EPSILON );
@@ -377,7 +377,7 @@ bool Vec2Equal( const Vec2* vec1, const Vec2* vec2 )
  True if the Vec2 are not the same, false otherwise.
  */
 /******************************************************************************/
-bool Vec2NotEqual( const Vec2* vec1, const Vec2* vec2 )
+int Vec2NotEqual( const Vec2* vec1, const Vec2* vec2 )
 {
   /*Just get the opposite of Equal*/
   return !Vec2Equal(vec1, vec2);
@@ -393,7 +393,7 @@ bool Vec2NotEqual( const Vec2* vec1, const Vec2* vec2 )
  Returns true if the x, y are zero. False otherwise
  */
 /******************************************************************************/
-bool Vec2IsZero( const Vec2* vec )
+int Vec2IsZero( const Vec2* vec )
 {
   /*Test if they are really close to zero*/
   return (fabsf(vec->x) < EPSILON && fabsf(vec->y) < EPSILON);

@@ -30,7 +30,7 @@
  True if the point is in the circle.  False otherwise.
  */
 /******************************************************************************/
-bool IntersectPointCircle(const Vec2* point, const Vec2* circleCenter, float radius)
+int IntersectPointCircle(const Vec2* point, const Vec2* circleCenter, float radius)
 {
   return Vec2DistanceSquared(point, circleCenter) - (radius*radius) <= EPSILON;
 }
@@ -54,7 +54,7 @@ bool IntersectPointCircle(const Vec2* point, const Vec2* circleCenter, float rad
  True if the point and rect are intersecting.  False otherwise.
  */
 /******************************************************************************/
-bool IntersectPointRect(const Vec2* point, const Vec2* center, float width, float height)
+int IntersectPointRect(const Vec2* point, const Vec2* center, float width, float height)
 {
   /*We need the have sizes of the rect*/
   float halfWidth  = width  / 2.f;
@@ -69,9 +69,9 @@ bool IntersectPointRect(const Vec2* point, const Vec2* center, float width, floa
   if((pointInRectSpace.x <  halfWidth)  && (pointInRectSpace.x > -halfWidth)  &&
      (pointInRectSpace.y <  halfHeight) && (pointInRectSpace.y > -halfHeight))
   {
-    return true;
+    return 1;
   }
-  return false;
+  return 0;
 }
 /******************************************************************************/
 /*!
@@ -93,7 +93,7 @@ bool IntersectPointRect(const Vec2* point, const Vec2* center, float width, floa
  True if the circles are intersecting, false otherwise.
  */
 /******************************************************************************/
-bool IntersectCircleCircle(const Vec2* center0, float radius0, const Vec2* center1, float radius1)
+int IntersectCircleCircle(const Vec2* center0, float radius0, const Vec2* center1, float radius1)
 {
   return IntersectPointCircle(center0, center1, radius0 + radius1);
 }
@@ -120,7 +120,7 @@ bool IntersectCircleCircle(const Vec2* center0, float radius0, const Vec2* cente
  TRUE if the circle and rect are intersecting, false otherwise.
  */
 /******************************************************************************/
-bool IntersectCircleRect(const Vec2* circleCenter, float radius,
+int IntersectCircleRect(const Vec2* circleCenter, float radius,
                 const Vec2* rectCenter, float width, float height)
 {
   return DistCircleRect(circleCenter, radius, rectCenter,width, height) <= EPSILON;
@@ -145,7 +145,7 @@ bool IntersectCircleRect(const Vec2* circleCenter, float radius,
  True if the circle and the line are intersecting, false otherwise.
  */
 /******************************************************************************/
-bool IntersectCircleLine(const Vec2* center, float radius,
+int IntersectCircleLine(const Vec2* center, float radius,
                 const Vec2* start, const Vec2* end)
 {
   return DistCircleLine(center, radius, start, end) <= EPSILON;
@@ -176,7 +176,7 @@ bool IntersectCircleLine(const Vec2* center, float radius,
  True if the two rectangles are intersecting, false otherwise.
  */
 /******************************************************************************/
-bool IntersectRectRect(const Vec2* rectCenter0, float width0, float height0,
+int IntersectRectRect(const Vec2* rectCenter0, float width0, float height0,
               const Vec2* rectCenter1, float width1, float height1)
 {
   return IntersectPointRect(rectCenter0, rectCenter1, width0 + width1, height0 + height1);

@@ -11,15 +11,14 @@
  */
 /******************************************************************************/
 #import "GameMgr.h"
-#import "Stage.h"
 #import "Graphics.h"
-
+#import "InitStage.h"
 
 @interface GameMgr()
 {
   StageType m_curr;
   StageType m_next;
-  Stage*    m_stage;
+  id    m_stage;
   BOOL      m_isQuitting;
 }
 
@@ -39,7 +38,8 @@
   m_isQuitting = NO;
   m_curr       = stageId;
   m_next       = stageId;
-  m_stage      = nil;
+  m_stage      = [[InitStage alloc]init];
+  [m_stage initilizeWithMgr:self];
   
   _gfx = [[Graphics alloc]initWithWidth:width Height:height];
   
@@ -52,6 +52,7 @@
   m_stage = nil;
   
   //shutdown engines
+  _gfx = nil;
   
 }
 -(void)update:(float)dt

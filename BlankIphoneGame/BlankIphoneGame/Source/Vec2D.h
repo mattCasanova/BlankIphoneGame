@@ -40,9 +40,9 @@ float Vec2LengthSquared(const Vec2* vec);
 float Vec2Distance(const Vec2* vec1, const Vec2* vec2);
 float Vec2DistanceSquared(const Vec2* vec1, const Vec2* vec2);
 /*Use these to test*/
-bool Vec2Equal(const Vec2* vec1, const Vec2* vec2);
-bool Vec2NotEqual(const Vec2* vec1, const Vec2* vec2);
-bool Vec2IsZero(const Vec2* vec);
+int Vec2Equal(const Vec2* vec1, const Vec2* vec2);
+int Vec2NotEqual(const Vec2* vec1, const Vec2* vec2);
+int Vec2IsZero(const Vec2* vec);
   
 
 #endif /* VEC2_H */

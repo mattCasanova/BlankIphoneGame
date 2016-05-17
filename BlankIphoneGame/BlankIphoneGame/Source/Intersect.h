@@ -14,17 +14,17 @@
 
 #include "Vec2D.h"
 
-bool IntersectPointCircle(const Vec2* point, const Vec2* center, float radius);
-bool IntersectPointRect(const Vec2* point, const Vec2* center,
+int IntersectPointCircle(const Vec2* point, const Vec2* center, float radius);
+int IntersectPointRect(const Vec2* point, const Vec2* center,
                 float width, float height);
-bool IntersectCircleCircle(const Vec2* center0, float radius0,
+int IntersectCircleCircle(const Vec2* center0, float radius0,
                     const Vec2* center1, float radius1);
-bool IntersectCircleRect(const Vec2* circleCenter, float radius,
+int IntersectCircleRect(const Vec2* circleCenter, float radius,
                   const Vec2* rectCenter, float width, float height);
-bool IntersectCircleLine(const Vec2* center, float radius,
+int IntersectCircleLine(const Vec2* center, float radius,
                   const Vec2* start, const Vec2* end);
   
-bool IntersectRectRect(const Vec2* center0, float width0, float height0,
+int IntersectRectRect(const Vec2* center0, float width0, float height0,
                 const Vec2* center1, float width1, float height1);
 
 

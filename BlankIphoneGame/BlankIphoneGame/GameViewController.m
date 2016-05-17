@@ -12,15 +12,14 @@
 /******************************************************************************/
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
-#import "Graphics.h"
 #import "GameMgr.h"
-#import "Mtx44.h"
+
 
 int textureID;
 
 @interface GameViewController ()
 {
-  Graphics* m_gfx;
+  GameMgr* m_gameMgr;
   float    m_gameWidth;
   float    m_gameHeight;
   float    m_screenWidth;
@@ -74,8 +73,9 @@ int textureID;
     m_gameHeight = m_screenHeight * m_gameWidth/ m_screenWidth;
   }
   
-  m_gfx = [[Graphics alloc]initWithWidth:m_gameWidth Height:m_gameHeight];
-  textureID = [m_gfx loadTexture: @"Test.png"];
+  m_gameMgr = [[GameMgr alloc]initWithWidth:m_gameWidth
+                                     Height:m_gameHeight
+                                 StartStage:ST_INIT];
 }
 /******************************************************************************/
 /*
@@ -88,7 +88,7 @@ int textureID;
   if ([EAGLContext currentContext] == self.pContext)
         [EAGLContext setCurrentContext:nil];
   
-  m_gfx = nil;
+  m_gameMgr = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,7 +98,7 @@ int textureID;
   if ([self isViewLoaded] && ([[self view] window] == nil))
   {
     self.view = nil;
-    m_gfx     = nil;
+    m_gameMgr = nil;
     
     if ([EAGLContext currentContext] == self.pContext)
       [EAGLContext setCurrentContext:nil];
@@ -124,15 +124,7 @@ int textureID;
 /******************************************************************************/
 - (void)update
 {
-  static float rot = 0;
-  rot += .05f;
-  Mtx44 world;
-  Mtx44MakeTransform(&world, 200, 200, rot, 300, 300, 0);
-  [m_gfx setBackgroundRed:.5 Green:.5 Blue:1];
-  [m_gfx setTexture:textureID];
-  [m_gfx clearScreen];
-  [m_gfx draw:&world];
-  [m_gfx present];
+  [m_gameMgr update:self.timeSinceLastUpdate];
 }
 
 

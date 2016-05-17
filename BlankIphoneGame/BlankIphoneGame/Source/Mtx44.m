@@ -362,7 +362,7 @@ void Mtx44MakeOrtho(Mtx44* result, float left, float right, float top, float bot
   result->m[3][2] = -(far + near) / (far - near);
   result->m[3][3] = 1;
 }
-void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance, const Vec2* /*up*/)
+void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance, const Vec2* up)
 {
   //This is what the 3D code should look like.
   
@@ -378,9 +378,10 @@ void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance, const Ve
   
   //Since this is a 2D only game, I can make some assumptions
   
-  //up.x;
   
-  result->m[0][0] = 1;
+  
+  
+  result->m[0][0] = up->y;//1;
   result->m[0][1] = 0;
   result->m[0][2] = 0;
   result->m[0][3] = 0;
@@ -414,7 +415,7 @@ void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance, const Ve
  True if the matrices are the same, false otherwise.
  */
 /******************************************************************************/
-bool Mtx44Equal(const Mtx44* mtx1, const Mtx44* mtx2)
+int Mtx44Equal(const Mtx44* mtx1, const Mtx44* mtx2)
 {
   int x,y;
   for(y = 0; y < MTX44_ROWS; ++y)
@@ -422,8 +423,8 @@ bool Mtx44Equal(const Mtx44* mtx1, const Mtx44* mtx2)
     for(x = 0; x < MTX44_COLS; ++x)
     {
       if(!FloatIsEqual(mtx1->m[y][x], mtx2->m[y][x]))
-        return false;
+        return 0;
     }
   }
-  return true;
+  return 1;
 }

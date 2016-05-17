@@ -16,14 +16,11 @@
 
 @class GameMgr;
 
-@interface Stage : NSObject
+@protocol Stage <NSObject>
 
 -(void)initilizeWithMgr:(GameMgr*) gameMgr;
 -(void)update:(float)dt;
 -(void)shutdown;
-
-@property(nonatomic, weak) GameMgr* gameMgr;
-
 
 @end
 
