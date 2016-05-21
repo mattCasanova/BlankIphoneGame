@@ -77,85 +77,101 @@ void Mtx44Copy( Mtx44* result, const Mtx44* toCopy )
 /******************************************************************************/
 void Mtx44Mult( Mtx44* result, const Mtx44* first, const Mtx44* second )
 {
-  result->m[0][0] =   first->m[0][0] * second->m[0][0] +
+  result->m[0][0] =
+  first->m[0][0] * second->m[0][0] +
   first->m[0][1] * second->m[1][0] +
   first->m[0][2] * second->m[2][0] +
   first->m[0][3] * second->m[3][0];
   
-  result->m[1][0] =   first->m[1][0] * second->m[0][0] +
+  result->m[1][0] =
+  first->m[1][0] * second->m[0][0] +
   first->m[1][1] * second->m[1][0] +
   first->m[1][2] * second->m[2][0] +
   first->m[1][3] * second->m[3][0];
   
-  result->m[2][0] =   first->m[2][0] * second->m[0][0] +
+  result->m[2][0] =
+  first->m[2][0] * second->m[0][0] +
   first->m[2][1] * second->m[1][0] +
   first->m[2][2] * second->m[2][0] +
   first->m[2][3] * second->m[3][0];
   
-  result->m[3][0] =   first->m[3][0] * second->m[0][0] +
+  result->m[3][0] =
+  first->m[3][0] * second->m[0][0] +
   first->m[3][1] * second->m[1][0] +
   first->m[3][2] * second->m[2][0] +
   first->m[3][3] * second->m[3][0];
   
   /*************************************************************************/
-  result->m[0][1] =   first->m[0][0] * second->m[0][1] +
+  result->m[0][1] =
+  first->m[0][0] * second->m[0][1] +
   first->m[0][1] * second->m[1][1] +
   first->m[0][2] * second->m[2][1] +
   first->m[0][3] * second->m[3][1];
   
-  result->m[1][1] =   first->m[1][0] * second->m[0][1] +
+  result->m[1][1] =
+  first->m[1][0] * second->m[0][1] +
   first->m[1][1] * second->m[1][1] +
   first->m[1][2] * second->m[2][1] +
   first->m[1][3] * second->m[3][1];
   
-  result->m[2][1] =   first->m[2][0] * second->m[0][1] +
+  result->m[2][1] =
+  first->m[2][0] * second->m[0][1] +
   first->m[2][1] * second->m[1][1] +
   first->m[2][2] * second->m[2][1] +
   first->m[2][3] * second->m[3][1];
   
-  result->m[3][1] =   first->m[3][0] * second->m[0][1] +
+  result->m[3][1] =
+  first->m[3][0] * second->m[0][1] +
   first->m[3][1] * second->m[1][1] +
   first->m[3][2] * second->m[2][1] +
   first->m[3][3] * second->m[3][1];
   
   /*************************************************************************/
-  result->m[0][2] =   first->m[0][0] * second->m[0][2] +
+  result->m[0][2] =
+  first->m[0][0] * second->m[0][2] +
   first->m[0][1] * second->m[1][2] +
   first->m[0][2] * second->m[2][2] +
   first->m[0][3] * second->m[3][2];
   
-  result->m[1][2] =   first->m[1][0] * second->m[0][2] +
+  result->m[1][2] =
+  first->m[1][0] * second->m[0][2] +
   first->m[1][1] * second->m[1][2] +
   first->m[1][2] * second->m[2][2] +
   first->m[1][3] * second->m[3][2];
   
-  result->m[2][2] =   first->m[2][0] * second->m[0][2] +
+  result->m[2][2] =
+  first->m[2][0] * second->m[0][2] +
   first->m[2][1] * second->m[1][2] +
   first->m[2][2] * second->m[2][2] +
   first->m[2][3] * second->m[3][2];
   
-  result->m[3][2] =   first->m[3][0] * second->m[0][2] +
+  result->m[3][2] =
+  first->m[3][0] * second->m[0][2] +
   first->m[3][1] * second->m[1][2] +
   first->m[3][2] * second->m[2][2] +
   first->m[3][3] * second->m[3][2];
   
   /*************************************************************************/
-  result->m[0][3] =   first->m[0][0] * second->m[0][3] +
+  result->m[0][3] =
+  first->m[0][0] * second->m[0][3] +
   first->m[0][1] * second->m[1][3] +
   first->m[0][2] * second->m[2][3] +
   first->m[0][3] * second->m[3][3];
   
-  result->m[1][3] =   first->m[1][0] * second->m[0][3] +
+  result->m[1][3] =
+  first->m[1][0] * second->m[0][3] +
   first->m[1][1] * second->m[1][3] +
   first->m[1][2] * second->m[2][3] +
   first->m[1][3] * second->m[3][3];
   
-  result->m[2][3] =   first->m[2][0] * second->m[0][3] +
+  result->m[2][3] =
+  first->m[2][0] * second->m[0][3] +
   first->m[2][1] * second->m[1][3] +
   first->m[2][2] * second->m[2][3] +
   first->m[2][3] * second->m[3][3];
   
-  result->m[3][3] =   first->m[3][0] * second->m[0][3] +
+  result->m[3][3] =
+  first->m[3][0] * second->m[0][3] +
   first->m[3][1] * second->m[1][3] +
   first->m[3][2] * second->m[2][3] +
   first->m[3][3] * second->m[3][3];
@@ -267,12 +283,12 @@ void Mtx44MakeTransform(Mtx44* result, float scaleX, float scaleY,
   
   /*Set the first ROW*/
   result->m[0][0] = scaleX * cosAngle;
-  result->m[0][1] = scaleX * sinAngle;
+  result->m[0][1] = scaleY * sinAngle;
   result->m[0][2] = 0.f;
   result->m[0][3] = 0.f;
   
   /*Set the second ROW*/
-  result->m[1][0] = scaleY * -sinAngle;
+  result->m[1][0] = scaleX * -sinAngle;
   result->m[1][1] = scaleY * cosAngle;
   result->m[1][2] = 0.f;
   result->m[1][3] = 0.f;
@@ -342,6 +358,7 @@ void Mtx44MakePerspective(Mtx44* result, float fovDegree, float aspect, float ne
 }
 void Mtx44MakeOrtho(Mtx44* result, float left, float right, float top, float bottom, float near, float far)
 {
+  //row 1
   result->m[0][0] = 2 / (right - left);
   result->m[0][1] = 0;
   result->m[0][2] = 0;

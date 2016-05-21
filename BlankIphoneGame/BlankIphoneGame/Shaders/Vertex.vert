@@ -32,7 +32,8 @@ void main()
   
   //calculate color and texCoord to send to frag shader
   texCoordOut = (texMtx * vec3(texCoord, 1)).xy;
+  texCoordOut = texCoord.xy;
   colorOut    = color;
   //set position
-  gl_Position = MVPMatrix * position;
+  gl_Position =    MVPMatrix * position;
 }

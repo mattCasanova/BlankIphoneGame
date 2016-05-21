@@ -89,7 +89,8 @@ enum
   //Set up matrix stack
   m_stack = [[MtxStack alloc]initWithStartSize:STACK_START_SIZE];
   Mtx44 proj;
-  Mtx44MakeOrtho(&proj, 0, m_width, 0, m_height, 1, -1);
+  //Mtx44MakeIdentity(&proj);
+  Mtx44MakeOrtho(&proj, 0, m_width, 0, m_height, -1, 1);
   [m_stack load:&proj];
   
   return self;
@@ -117,6 +118,8 @@ enum
   /*Enable textures and texture blending*/
   glEnable(GL_TEXTURE_2D);
   glEnable( GL_BLEND );
+  //glEnable(GL_CULL_FACE);
+  //glCullFace(GL_CW);
   glActiveTexture(GL_TEXTURE0);
   glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
   

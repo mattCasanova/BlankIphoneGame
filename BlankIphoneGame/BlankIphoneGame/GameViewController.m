@@ -54,7 +54,7 @@ int textureID;
   GLKView *view = (GLKView *)self.view;
   view.context = self.pContext;
   view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-  self.preferredFramesPerSecond = 60;
+  self.preferredFramesPerSecond = 30;
   
   
   //"normalize" width and height
@@ -90,7 +90,11 @@ int textureID;
   
   m_gameMgr = nil;
 }
-
+/******************************************************************************/
+/*
+   Message to handle if application is running out of memory.
+ */
+/******************************************************************************/
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
