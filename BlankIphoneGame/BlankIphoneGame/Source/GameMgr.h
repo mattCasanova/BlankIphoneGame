@@ -24,8 +24,6 @@
               StartStage:(StageType)stageId;
 -(void)update:(float)dt;
 -(void)shutdown;
-
-
 -(void)setNextStage:(StageType) stageId;
 
 @property(nonatomic, readonly) Graphics* gfx;
