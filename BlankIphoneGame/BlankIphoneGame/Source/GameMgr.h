@@ -16,7 +16,13 @@
 #import <Foundation/Foundation.h>
 #import "StageType.h"
 #import "Graphics.h"
+#include "Vec2D.h"
 
+typedef struct t_TouchData
+{
+  Vec2 touchLoc;
+  BOOL  isTouched;
+}TouchData;
 
 /******************************************************************************/
 /*!
