@@ -17,6 +17,12 @@
 #import "Mtx44.h"
 
 
+/******************************************************************************/
+/*!
+ A matrix stack class used for easily storing and concatinating matricies 
+ for passing to a shader.
+ */
+/******************************************************************************/
 @interface MtxStack : NSObject
 
 -(MtxStack*)initWithStartSize:(int)startSize;

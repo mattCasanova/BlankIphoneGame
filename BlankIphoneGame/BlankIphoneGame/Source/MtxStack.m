@@ -12,28 +12,65 @@
 #include "MtxStack.h"
 
 
+//private data
 @interface MtxStack()
 {
-  Mtx44* m_stack;
-  int    m_size;
-  int    m_capacity;
+  Mtx44* m_stack;    //!< dynamically allocated array of matricies
+  int    m_size;     //!< The number of matricies currently in the stack
+  int    m_capacity; //!< The max size of the array before it will grow
 }
-
+//private functions
 -(void)grow;
 
 @end
 
 @implementation MtxStack
 
+/******************************************************************************/
+/*!
+ Doubles m_capacity, allocates a new array and copies the value from the old
+ array before deleting it.
+ */
+/******************************************************************************/
+-(void)grow
+{
+  //double capacity and allocate
+  m_capacity = m_capacity * 2;
+  Mtx44* pNewData = (Mtx44*)malloc(m_capacity * sizeof(Mtx44));
+  
+  //make sure we have enough space
+  NSAssert(pNewData != 0, @"No System Memory");
+  
+  //copy over data
+  for(int i = 0; i < m_size; ++i)
+    pNewData[i] = m_stack[i];
+  
+  free(m_stack);
+  m_stack = pNewData;
+  
+}
+/******************************************************************************/
+/*!
+ construtor for the matrix stack.  Allocates at least enough space for ]
+ "startSize" number of matricies.  However it can grow if you need.
+ 
+ \param startSize
+ The number of matrices the stack can hold before growing.
+ 
+ \return
+ A pointer to this matrix stack
+ */
+/******************************************************************************/
 -(MtxStack*)initWithStartSize:(int)startSize
 {
+  //init super class, return if it fails.
   self = [super init];
   if(!self)
     return 0;
 
-  m_size = 0;
+  m_size     = 0;
   m_capacity = startSize;
-  m_stack = (Mtx44*)malloc(startSize * sizeof(Mtx44));
+  m_stack    = (Mtx44*)malloc(startSize * sizeof(Mtx44));
   
   //if malloc fails
   if(!m_stack)
@@ -54,9 +91,9 @@
 /******************************************************************************/
 -(void)dealloc
 {
-  m_capacity = m_size = 0;
   free(m_stack);
-  m_stack = 0;
+  m_capacity = m_size = 0;
+  m_stack    = 0;
 }
 /******************************************************************************/
 /*!
@@ -84,23 +121,6 @@
   m_size = 0;
   m_stack[m_size++] = *mtx;
 }
--(void)grow
-{
-  //double capacity and allocate
-  m_capacity = m_capacity * 2;
-  Mtx44* pNewData = (Mtx44*)malloc(m_capacity * sizeof(Mtx44));
-  
-  //make sure we have enough space
-  NSAssert(pNewData != 0, @"No System Memory");
-  
-  //copy over data
-  for(int i = 0; i < m_size; ++i)
-    pNewData[i] = m_stack[i];
-  
-  free(m_stack);
-  m_stack = pNewData;
-  
-}
 /******************************************************************************/
 /*!
  Multiplies the top matrix by the parameter and stores it in the new top.
@@ -111,9 +131,12 @@
 /******************************************************************************/
 -(void)push:(const Mtx44*)mtx
 {
+  //grow if we can't fit another array
   if(m_size == m_capacity)
     [self grow];
   
+  //now we have room, so multiply param matrix by the top of the stack and
+  //add result to the top
   Mtx44 result;
   Mtx44Mult(&result, mtx, m_stack + (m_size - 1));
   m_stack[m_size++] = result;
