@@ -26,7 +26,8 @@ static const int MTX44_COLS   = 4;/*! The number of columns in the matrix*/
 
 typedef struct Mtx44_t
 {
-  float m[MTX44_ROWS][MTX44_COLS];/*!< Array of 16 floats to represent a 4x4 matrix*/
+  /*!< Array of 16 floats to represent a 4x4 matrix*/
+  float m[MTX44_ROWS][MTX44_COLS];
 }Mtx44;
 
 void Mtx44MakeZero(Mtx44* result);

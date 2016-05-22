@@ -356,6 +356,33 @@ void Mtx44MakePerspective(Mtx44* result, float fovDegree, float aspect, float ne
   result->m[3][3] = 0;
   
 }
+/******************************************************************************/
+/*!
+ Creates an Orthographic projection matrix from given parameters.
+ 
+ \param result
+ The matrix to set.
+ 
+ \param left
+ The left edge of my projection
+ 
+ \param right
+ The right edge of my projection
+ 
+ \param top
+ The top edge of my projection
+ 
+ \param bottom
+ The bottom edge of my projection
+ 
+ \param near
+ The distance of the near plane
+ 
+ \param far
+ The distance of the far plane
+ 
+ */
+/******************************************************************************/
 void Mtx44MakeOrtho(Mtx44* result, float left, float right, float top, float bottom, float near, float far)
 {
   //row 1
@@ -379,6 +406,39 @@ void Mtx44MakeOrtho(Mtx44* result, float left, float right, float top, float bot
   result->m[3][2] = -(far + near) / (far - near);
   result->m[3][3] = 1;
 }
+/******************************************************************************/
+/*!
+ Creates an view matrix from given parameters.  Since this is a simple 2D engine
+ I make some assumptions: 
+ 
+ I am always looking perpendicular to the xy plane.
+ I never need to rotate the camera.
+ 
+ If I need a better camera, I can improve this funtion in the future.
+ 
+ \param result
+ The matrix to set.
+ 
+ \param camPos
+ The
+ 
+ \param right
+ The right edge of my projection
+ 
+ \param top
+ The top edge of my projection
+ 
+ \param bottom
+ The bottom edge of my projection
+ 
+ \param near
+ The distance of the near plane
+ 
+ \param far
+ The distance of the far plane
+ 
+ */
+/******************************************************************************/
 void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance, const Vec2* up)
 {
   //This is what the 3D code should look like.
@@ -395,10 +455,7 @@ void Mtx44MakeView(Mtx44* result, const Vec2* camPos,float camDistance, const Ve
   
   //Since this is a 2D only game, I can make some assumptions
   
-  
-  
-  
-  result->m[0][0] = up->y;//1;
+  result->m[0][0] = up->y;//1, this stops the compiler warning of unused up;
   result->m[0][1] = 0;
   result->m[0][2] = 0;
   result->m[0][3] = 0;

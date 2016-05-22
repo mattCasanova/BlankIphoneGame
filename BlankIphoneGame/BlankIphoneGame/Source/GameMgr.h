@@ -17,6 +17,13 @@
 #import "StageType.h"
 #import "Graphics.h"
 
+
+/******************************************************************************/
+/*!
+ Class resposible for state switching, managing my core engines including
+ graphics and audio, as well as holding shared game data
+ */
+/******************************************************************************/
 @interface GameMgr : NSObject
 
 -(GameMgr*)initWithWidth:(float)width
@@ -25,6 +32,7 @@
 -(void)update:(float)dt;
 -(void)shutdown;
 -(void)setNextStage:(StageType) stageId;
+
 
 @property(nonatomic, readonly) Graphics* gfx;
 
