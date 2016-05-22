@@ -188,7 +188,7 @@ void Vec2Project( Vec2* result, const Vec2* vec1, const Vec2* vec2 )
   /*Get the dot product*/
   float dotProduct = Vec2Dot(vec1, vec2);
   /*Get the length squared*/
-  float lengthSquared = Vec2Dot(vec2,vec2);
+  float lengthSquared = Vec2LengthSquared(vec2);
   
   //DEBUG_ASSERT(!FloatIsEqual(lengthSquared, 0.0f),
   // "Trying to Project onto the zero vector");
@@ -277,7 +277,7 @@ float Vec2Dot( const Vec2* vec1, const Vec2* vec2 )
 float Vec2Length( const Vec2* vec )
 {
   /*Use sqrt to get length*/
-  return sqrtf(Vec2LengthSquared(vec));
+  return sqrtf(vec->x*vec->x + vec->y*vec->y);
 }
 /******************************************************************************/
 /*!
