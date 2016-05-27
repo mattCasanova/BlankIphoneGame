@@ -25,7 +25,7 @@
 -(void)update:(float)dt
 {
   static float rot = 0;
-  rot += .5f * dt;
+  rot += 2.f * dt;
   rot = Wrap(rot, 0, PI * 2);
   Mtx44 world;
   Mtx44MakeTransform(&world, 300, 300, rot, 150, 150, 0);
@@ -41,6 +41,15 @@
 -(void)shutdown
 {
   [m_gameMgr.gfx unloadTexture:textureID];
+}
+
+@end
+
+@implementation InitStageBuilder
+
+-(id<Stage>)create
+{
+  return [[InitStage alloc]init];
 }
 
 @end

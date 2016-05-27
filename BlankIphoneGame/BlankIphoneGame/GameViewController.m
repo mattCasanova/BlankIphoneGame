@@ -36,28 +36,28 @@ int textureID;
 {
   [super touchesBegan:touches withEvent:event];
   CGPoint raw = [[touches anyObject] locationInView:self.view];
-  GameMath::Vec2 touch;
+  Vec2 touch;
   touch.x = raw.x * m_gameWidth / m_screenWidth;
   touch.y = raw.y * m_gameHeight / m_screenHeight;
-  pStageManager->SetInput(touch);
-  pStageManager->IsTouched(true);
+  //pStageManager->SetInput(touch);
+  //pStageManager->IsTouched(true);
   
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
   [super touchesMoved:touches withEvent:event];
   CGPoint raw = [[touches anyObject] locationInView:self.view];
-  GameMath::Vec2 touch;
+  /*GameMath::Vec2 touch;
   touch.x = raw.x * m_gameWidth / m_screenWidth;
   touch.y = raw.y * m_gameHeight / m_screenHeight;
   pStageManager->SetInput(touch);
-  pStageManager->IsTouched(true);
+  pStageManager->IsTouched(true);*/
   
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
   [super touchesEnded:touches withEvent:event];
-  pStageManager->IsTouched(false);
+  //pStageManager->IsTouched(false);
 }
 
 /******************************************************************************/

@@ -16,13 +16,6 @@
 #import <Foundation/Foundation.h>
 #import "StageType.h"
 #import "Graphics.h"
-#include "Vec2D.h"
-
-typedef struct t_TouchData
-{
-  Vec2 touchLoc;
-  BOOL  isTouched;
-}TouchData;
 
 /******************************************************************************/
 /*!
@@ -34,10 +27,10 @@ typedef struct t_TouchData
 
 -(GameMgr*)initWithWidth:(float)width
                   Height:(float)height
-              StartStage:(StageType)stageId;
+              StartStage:(StageType)startStage;
 -(void)update:(float)dt;
 -(void)shutdown;
--(void)setNextStage:(StageType) stageId;
+-(void)setNextStage:(StageType) nextStage;
 
 
 @property(nonatomic, readonly) Graphics* gfx;

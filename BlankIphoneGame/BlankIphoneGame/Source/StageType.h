@@ -16,7 +16,8 @@ Use this to enumerate all of the stage types in your game.  You can use the
 /*List your game stages here for easy stage switching within each stage
  Use the enum value as a key in your stage factory*/
 typedef enum {
-  ST_INIT
+  ST_INIT,
+  ST_COUNT
 }StageType;
 
 

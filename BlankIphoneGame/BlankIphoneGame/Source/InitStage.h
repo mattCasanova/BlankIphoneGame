@@ -7,7 +7,13 @@
 //
 
 #import "Stage.h"
+#include "StageBuilder.h"
 
 @interface InitStage : NSObject<Stage>
+
+@end
+
+
+@interface InitStageBuilder : NSObject<StageBuilder>
 
 @end

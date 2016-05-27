@@ -11,16 +11,20 @@
  */
 /******************************************************************************/
 #import "GameMgr.h"
+#import "StageFactory.h"
 #import "Graphics.h"
+#import "StageFactory.h"
 #import "InitStage.h"
 
 //private data
 @interface GameMgr()
 {
-  StageType m_curr;       //!< To keep track of the current stage we are on
-  StageType m_next;       //!< To keep track of the stage will we do next frame
-  id        m_stage;      //!< A pointer to the current stage
-  BOOL      m_isQuitting; //!< a flag to know when user wants to quit
+  StageType     m_curr;       //!< Enum of current stage we are on
+  StageType     m_next;       //!< Enum of stage will we do next frame
+  id            m_stage;      //!< A pointer to the current stage
+  BOOL          m_isQuitting; //!< A flag to know when user wants to quit
+  StageFactory* m_factory;    //!< Instantiate stage based on enum
+  
 }
 //private functions
 -(void)changeStage;
@@ -61,7 +65,7 @@
 /******************************************************************************/
 -(GameMgr*)initWithWidth:(float)width
                   Height:(float)height
-              StartStage:(StageType)stageId
+              StartStage:(StageType)startStage
 {
   //init super class and return null if it didn't work
   self = [super init];
@@ -69,15 +73,22 @@
     return 0;
   
   m_isQuitting = NO;
-  m_curr       = stageId;
-  m_next       = stageId;
+  m_curr       = startStage;
+  m_next       = startStage;
   
   //Init graphics
    _gfx = [[Graphics alloc]initWithWidth:width Height:height];
   
   
+  //Init Factory
+  m_factory = [[StageFactory alloc]init];
+  
+  //Add My Builders
+  id builder = [[InitStageBuilder alloc]init];
+  [m_factory addBuilder:builder OfType:ST_INIT];
+  
   //get start stage from manager and init
-  m_stage      = [[InitStage alloc]init];
+  m_stage      = [m_factory CreateStageOfType:startStage];
   [m_stage initilizeWithMgr:self];
   
   return self;
@@ -101,9 +112,10 @@
 /******************************************************************************/
 -(void)shutdown
 {
-  //shutdown current stage
+  //shutdown current stage and factory
   [m_stage shutdown];
   m_stage = nil;
+  m_factory = nil;
   
   
   //shutdown engines
@@ -157,9 +169,9 @@
  True if x is in the range, false otherwise.
  */
 /******************************************************************************/
--(void)setNextStage:(StageType) stageId
+-(void)setNextStage:(StageType) nextStage
 {
-  m_next = stageId;
+  m_next = nextStage;
 }
 
 

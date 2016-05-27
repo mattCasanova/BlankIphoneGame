@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F5234F601CBA1801001D6983 /* Graphics.m in Sources */ = {isa = PBXBuildFile; fileRef = F5234F5E1CBA1801001D6983 /* Graphics.m */; };
 		F540F1941CC1E5990082FF6F /* InitStage.m in Sources */ = {isa = PBXBuildFile; fileRef = F540F1931CC1E5990082FF6F /* InitStage.m */; };
+		F540FCDF1CF86FBE0028E0F3 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = F540FCDE1CF86FBE0028E0F3 /* Input.m */; };
 		F57E03A41CB1312100FFF2D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03A31CB1312100FFF2D5 /* main.m */; };
 		F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03A61CB1312100FFF2D5 /* AppDelegate.m */; };
 		F57E03A91CB1312100FFF2D5 /* Fragment.frag in Resources */ = {isa = PBXBuildFile; fileRef = F57E03A81CB1312100FFF2D5 /* Fragment.frag */; };
@@ -19,6 +20,7 @@
 		F57E03B61CB1312100FFF2D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57E03B41CB1312100FFF2D5 /* LaunchScreen.storyboard */; };
 		F57E03C11CB1312100FFF2D5 /* BlankIphoneGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03C01CB1312100FFF2D5 /* BlankIphoneGameTests.m */; };
 		F57E03CC1CB1312100FFF2D5 /* BlankIphoneGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03CB1CB1312100FFF2D5 /* BlankIphoneGameUITests.m */; };
+		F5956AA61CF825ED0018FE88 /* StageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F5956AA51CF825ED0018FE88 /* StageFactory.m */; };
 		F5AB64FE1CB39526007A8EA7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AB64FD1CB39526007A8EA7 /* GLKit.framework */; };
 		F5AB65021CB3970C007A8EA7 /* GameMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65011CB3970C007A8EA7 /* GameMath.m */; };
 		F5AB65061CB39D8A007A8EA7 /* Vec2D.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65041CB39D8A007A8EA7 /* Vec2D.m */; };
@@ -52,6 +54,8 @@
 		F5234F5F1CBA1801001D6983 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graphics.h; path = Source/Graphics.h; sourceTree = "<group>"; };
 		F540F1921CC1E5990082FF6F /* InitStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitStage.h; path = Source/InitStage.h; sourceTree = "<group>"; };
 		F540F1931CC1E5990082FF6F /* InitStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitStage.m; path = Source/InitStage.m; sourceTree = "<group>"; };
+		F540FCDD1CF86FBE0028E0F3 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Input.h; path = Source/Input.h; sourceTree = "<group>"; };
+		F540FCDE1CF86FBE0028E0F3 /* Input.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Input.m; path = Source/Input.m; sourceTree = "<group>"; };
 		F57E039F1CB1312100FFF2D5 /* BlankIphoneGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlankIphoneGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57E03A31CB1312100FFF2D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F57E03A51CB1312100FFF2D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,6 +74,9 @@
 		F57E03C71CB1312100FFF2D5 /* BlankIphoneGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlankIphoneGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57E03CB1CB1312100FFF2D5 /* BlankIphoneGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlankIphoneGameUITests.m; sourceTree = "<group>"; };
 		F57E03CD1CB1312100FFF2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5956AA51CF825ED0018FE88 /* StageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StageFactory.m; path = Source/StageFactory.m; sourceTree = "<group>"; };
+		F5956AA71CF826040018FE88 /* StageFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StageFactory.h; path = Source/StageFactory.h; sourceTree = "<group>"; };
+		F5956AA81CF8270C0018FE88 /* StageBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StageBuilder.h; path = Source/StageBuilder.h; sourceTree = "<group>"; };
 		F5AB64FD1CB39526007A8EA7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		F5AB64FF1CB396E7007A8EA7 /* GameMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMath.h; path = Source/GameMath.h; sourceTree = "<group>"; };
 		F5AB65011CB3970C007A8EA7 /* GameMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMath.m; path = Source/GameMath.m; sourceTree = "<group>"; };
@@ -119,6 +126,7 @@
 		F5234F5D1CBA12BF001D6983 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F540FCDC1CF86F3B0028E0F3 /* Input */,
 				F540F1911CC1E5600082FF6F /* Stages */,
 				F5BFBCBA1CBFB3C100445653 /* GameMgr */,
 				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
@@ -132,6 +140,7 @@
 		F540F1911CC1E5600082FF6F /* Stages */ = {
 			isa = PBXGroup;
 			children = (
+				F5956AA41CF825B70018FE88 /* StageFactory */,
 				F540F1951CC1E5A60082FF6F /* InitStage */,
 				F5EF56221CC0B9A6004589EE /* Stage.h */,
 				F5BFBCC01CBFB68800445653 /* StageType.h */,
@@ -146,6 +155,15 @@
 				F540F1931CC1E5990082FF6F /* InitStage.m */,
 			);
 			name = InitStage;
+			sourceTree = "<group>";
+		};
+		F540FCDC1CF86F3B0028E0F3 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				F540FCDD1CF86FBE0028E0F3 /* Input.h */,
+				F540FCDE1CF86FBE0028E0F3 /* Input.m */,
+			);
+			name = Input;
 			sourceTree = "<group>";
 		};
 		F57E03961CB1312100FFF2D5 = {
@@ -244,6 +262,16 @@
 				F57E03AD1CB1312100FFF2D5 /* GameViewController.m */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		F5956AA41CF825B70018FE88 /* StageFactory */ = {
+			isa = PBXGroup;
+			children = (
+				F5956AA51CF825ED0018FE88 /* StageFactory.m */,
+				F5956AA71CF826040018FE88 /* StageFactory.h */,
+				F5956AA81CF8270C0018FE88 /* StageBuilder.h */,
+			);
+			name = StageFactory;
 			sourceTree = "<group>";
 		};
 		F5AB65001CB396EE007A8EA7 /* MathHelp */ = {
@@ -458,6 +486,8 @@
 				F57E03A41CB1312100FFF2D5 /* main.m in Sources */,
 				F5AB65061CB39D8A007A8EA7 /* Vec2D.m in Sources */,
 				F5234F601CBA1801001D6983 /* Graphics.m in Sources */,
+				F5956AA61CF825ED0018FE88 /* StageFactory.m in Sources */,
+				F540FCDF1CF86FBE0028E0F3 /* Input.m in Sources */,
 				F5AB650E1CB3A524007A8EA7 /* MtxStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
