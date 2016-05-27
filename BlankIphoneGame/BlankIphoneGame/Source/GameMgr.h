@@ -16,6 +16,7 @@
 #import <Foundation/Foundation.h>
 #import "StageType.h"
 #import "Graphics.h"
+#import "Input.h"
 
 /******************************************************************************/
 /*!
@@ -34,6 +35,7 @@
 
 
 @property(nonatomic, readonly) Graphics* gfx;
+@property(nonatomic, strong)   Input*    input;
 
 @end
 

@@ -79,9 +79,11 @@
   //Init graphics
    _gfx = [[Graphics alloc]initWithWidth:width Height:height];
   
+  //Init input
   
   //Init Factory
   m_factory = [[StageFactory alloc]init];
+  
   
   //Add My Builders
   id builder = [[InitStageBuilder alloc]init];

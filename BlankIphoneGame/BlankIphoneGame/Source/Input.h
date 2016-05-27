@@ -18,7 +18,9 @@ typedef struct t_TouchData
 
 @interface Input : NSObject
 
-
+-(Input*)init;
+-(void)SetIsTouched:(BOOL) isTouched atLocation:(const Vec2*) location;
+-(const TouchData*)GetTouchData;
 
 
 @end
