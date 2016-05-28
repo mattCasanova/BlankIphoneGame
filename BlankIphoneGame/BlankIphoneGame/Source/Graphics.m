@@ -123,6 +123,8 @@ enum
   glActiveTexture(GL_TEXTURE0);
   glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
   
+
+  
   //Create vertex array (to save and load my open gl state)
   glGenVertexArraysOES(1, &m_GLState);
   glBindVertexArrayOES(m_GLState);

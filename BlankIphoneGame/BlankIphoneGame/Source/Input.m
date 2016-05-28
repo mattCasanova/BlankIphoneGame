@@ -9,7 +9,7 @@
 #import "Input.h"
 
 
-#define NO_TOUCH -1.f
+#define NO_TOUCH -1000.f
 
 
 //private data

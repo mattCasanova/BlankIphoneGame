@@ -80,7 +80,7 @@
    _gfx = [[Graphics alloc]initWithWidth:width Height:height];
   
   //Init input
-  
+  _input = [[Input alloc]init];
   //Init Factory
   m_factory = [[StageFactory alloc]init];
   

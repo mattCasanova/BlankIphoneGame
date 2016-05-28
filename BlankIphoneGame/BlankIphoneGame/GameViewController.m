@@ -55,7 +55,7 @@ int textureID;
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
   [super touchesEnded:touches withEvent:event];
-  Vec2 touch = {-1.f, -1.f};
+  Vec2 touch = {-1000.f, -1000.f};
   [[m_gameMgr input]SetIsTouched:NO atLocation:&touch];
 }
 
@@ -99,8 +99,8 @@ int textureID;
     m_gameHeight = m_screenHeight * m_gameWidth/ m_screenWidth;
   }
   
-  m_gameMgr = [[GameMgr alloc]initWithWidth:m_gameWidth
-                                     Height:m_gameHeight
+  m_gameMgr = [[GameMgr alloc]initWithWidth:m_screenWidth//m_gameWidth
+                                     Height:m_screenHeight//m_gameHeight
                                  StartStage:ST_INIT];
 }
 /******************************************************************************/
