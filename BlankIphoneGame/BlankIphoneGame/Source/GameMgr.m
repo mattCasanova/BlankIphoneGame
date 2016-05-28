@@ -70,7 +70,7 @@
   //init super class and return null if it didn't work
   self = [super init];
   if(!self)
-    return 0;
+    return nil;
   
   m_isQuitting = NO;
   m_curr       = startStage;

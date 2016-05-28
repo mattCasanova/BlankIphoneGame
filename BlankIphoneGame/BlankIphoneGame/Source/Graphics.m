@@ -10,7 +10,7 @@
  */
 /******************************************************************************/
 #include "Graphics.h"
-
+#import "MtxStack.h"
 
 //Helper macro for getting byte offset of verts
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -33,7 +33,7 @@ enum
   NUM_UNIFORMS
 };
 
-
+//private data
 @interface Graphics ()
 {
   MtxStack*      m_stack;                 //to pass one matrix to shader
@@ -48,7 +48,7 @@ enum
   GLuint         m_program;               //the shader program
   GLint          m_uniforms[NUM_UNIFORMS];//Array of shader uniforms
 }
-
+//private functions
 -(void)initOpenGL;
 -(BOOL)loadShaders;
 -(BOOL)compileShader:(GLuint*)shader Type:(GLenum)type FileName:(NSString*)file;
@@ -78,7 +78,6 @@ enum
   m_width    = width;
   m_height   = height;
   
-  
   [self loadShaders];
   [self initOpenGL];
   
@@ -89,7 +88,6 @@ enum
   //Set up matrix stack
   m_stack = [[MtxStack alloc]initWithStartSize:STACK_START_SIZE];
   Mtx44 proj;
-  //Mtx44MakeIdentity(&proj);
   Mtx44MakeOrtho(&proj, 0, m_width, 0, m_height, -1, 1);
   [m_stack load:&proj];
   

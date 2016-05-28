@@ -66,7 +66,7 @@
   //init super class, return if it fails.
   self = [super init];
   if(!self)
-    return 0;
+    return nil;
 
   m_size     = 0;
   m_capacity = startSize;
@@ -76,7 +76,7 @@
   if(!m_stack)
   {
     self = nil;
-    return 0;
+    return nil;
   }
 
   return self;

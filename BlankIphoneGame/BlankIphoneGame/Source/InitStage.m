@@ -36,6 +36,7 @@
 
   mouse = [[m_gameMgr input]GetTouchData]->touchLoc;
   Mtx44MakeTransform(&world, 300, 300, rot, mouse.x, mouse.y, 0);
+  [m_gameMgr.gfx setTextureRed:0 Green:1 Blue:0 Alpha:.25];
   
   [m_gameMgr.gfx clearScreen];
   [m_gameMgr.gfx draw:&world];

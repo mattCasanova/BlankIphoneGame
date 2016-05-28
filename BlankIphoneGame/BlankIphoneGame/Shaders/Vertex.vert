@@ -14,7 +14,7 @@ attribute vec4 position;  //vertext postion
 attribute vec2 texCoord;  //vertext color
 
 //varying values get passed to frag shader
-varying vec4   colorOut;    //Color to send to frag shader
+
 varying vec2   texCoordOut; //texture coord to send to frag shader
 
 //Uniforms don't change per vetex
@@ -32,8 +32,7 @@ void main()
   
   //calculate color and texCoord to send to frag shader
   texCoordOut = (texMtx * vec3(texCoord, 1)).xy;
-  texCoordOut = texCoord.xy;
-  colorOut    = color;
+
   //set position
   gl_Position =    MVPMatrix * position;
 }

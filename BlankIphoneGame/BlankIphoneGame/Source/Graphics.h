@@ -6,7 +6,8 @@
  Date:   2016/04/010
  
 
- Header for basic graphics
+ The Graphics class is repsonsible for loading and drawing textures on the 
+ screen.
  */
 /******************************************************************************/
 #ifndef GRAPHICS_H
@@ -15,10 +16,8 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 #import <OpenGLES/ES2/glext.h>
-#import "MtxStack.h"
 #import "Mtx44.h"
 
-//#include <map>//for textures
 
 @interface Graphics : NSObject
 

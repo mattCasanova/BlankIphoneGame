@@ -10,12 +10,12 @@
  */
 /******************************************************************************/
 //Varying values are sent from vert shader
-varying lowp vec4    colorOut;
 varying mediump vec2 texCoordOut;
+
 //uniforms don't change per fragment
 uniform sampler2D    sampler;
-
+uniform lowp vec4         color; //color applied to the fragment
 void main()
 {
-  gl_FragColor = texture2D(sampler, texCoordOut) * colorOut;
+  gl_FragColor = texture2D(sampler, texCoordOut) * color;
 }

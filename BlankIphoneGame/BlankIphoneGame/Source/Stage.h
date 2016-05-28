@@ -14,6 +14,7 @@
 
 #import <Foundation/Foundation.h>
 
+//Foward Declare GameManager
 @class GameMgr;
 
 @protocol Stage <NSObject>

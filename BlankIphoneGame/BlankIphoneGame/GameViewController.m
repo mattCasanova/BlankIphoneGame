@@ -32,33 +32,77 @@ int textureID;
 
 @implementation GameViewController
 
+
+/******************************************************************************/
+/*
+ UIResponder function to capture message when user touches the screen.
+ 
+ \param touches
+ The NSSet of all screen touches, although for now I only capture one touch.
+ 
+ \param event
+ The UIEvent related to the touch.  I ignore this.
+ */
+/******************************************************************************/
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+  //call super class
   [super touchesBegan:touches withEvent:event];
+  //get the raw touch point from IOS
   CGPoint raw = [[touches anyObject] locationInView:self.view];
   Vec2 touch;
+  //convert the touch to my games coordinate system
   touch.x = raw.x * m_gameWidth / m_screenWidth;
   touch.y = raw.y * m_gameHeight / m_screenHeight;
+  //Upate input class with touch info
   [[m_gameMgr input]SetIsTouched:YES atLocation:&touch];
   
 }
+/******************************************************************************/
+/*
+ UIResponder function to capture message when user touches the screen.
+ 
+ \param touches
+ The NSSet of all screen touches, although for now I only capture one touch.
+ 
+ \param event
+ The UIEvent related to the touch.  I ignore this.
+ */
+/******************************************************************************/
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+  //call super class
   [super touchesMoved:touches withEvent:event];
+  //Get raw touch point
   CGPoint raw = [[touches anyObject] locationInView:self.view];
   Vec2 touch;
+  //convert point to my games coordinates
   touch.x = raw.x * m_gameWidth / m_screenWidth;
   touch.y = raw.y * m_gameHeight / m_screenHeight;
+  //upate input class with my touch info
   [[m_gameMgr input]SetIsTouched:YES atLocation:&touch];
-  
 }
+/******************************************************************************/
+/*
+ UIResponder function to capture message when user has stopped touching the 
+ screen
+ 
+ \param touches
+ The NSSet of all screen touches, although this is ignored
+ 
+ \param event
+ The UIEvent related to the touch.  I ignore this.
+ */
+/******************************************************************************/
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+  //call super class
   [super touchesEnded:touches withEvent:event];
+  //set touch to very far off screen
   Vec2 touch = {-1000.f, -1000.f};
+  //update input class with touch info
   [[m_gameMgr input]SetIsTouched:NO atLocation:&touch];
 }
-
 /******************************************************************************/
 /*
    Gets called when new view is created.
@@ -80,7 +124,7 @@ int textureID;
   GLKView *view = (GLKView *)self.view;
   view.context = self.pContext;
   view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-  self.preferredFramesPerSecond = 30;
+  self.preferredFramesPerSecond = 60;
   
   
   //"normalize" width and height
@@ -99,8 +143,8 @@ int textureID;
     m_gameHeight = m_screenHeight * m_gameWidth/ m_screenWidth;
   }
   
-  m_gameMgr = [[GameMgr alloc]initWithWidth:m_screenWidth//m_gameWidth
-                                     Height:m_screenHeight//m_gameHeight
+  m_gameMgr = [[GameMgr alloc]initWithWidth:m_gameWidth
+                                     Height:m_gameHeight
                                  StartStage:ST_INIT];
 }
 /******************************************************************************/
