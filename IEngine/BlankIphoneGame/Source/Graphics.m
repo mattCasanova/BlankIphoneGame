@@ -41,8 +41,7 @@ enum
   float          m_bgRed;                 //red component of background
   float          m_bgGreen;               //green component of background
   float          m_bgBlue;                //blue componment of background
-  float          m_width;                 //game width
-  float          m_height;                //game height
+  Vec2           m_screenSize;            //Screen Width and Height
   GLuint         m_GLState;               //saved opengl options
   GLuint         m_vertexBuffer;          //Textured quad mesh
   GLuint         m_program;               //the shader program
@@ -75,8 +74,8 @@ enum
     return nil;
   
   //Set class variables
-  m_width    = width;
-  m_height   = height;
+  m_screenSize.x = width;
+  m_screenSize.y = height;
   
   [self loadShaders];
   [self initOpenGL];
@@ -88,7 +87,7 @@ enum
   //Set up matrix stack
   m_stack = [[MtxStack alloc]initWithStartSize:STACK_START_SIZE];
   Mtx44 proj;
-  Mtx44MakeOrtho(&proj, 0, m_width, 0, m_height, -1, 1);
+  Mtx44MakeOrtho(&proj, 0, m_screenSize.x, 0, m_screenSize.y, -1, 1);
   [m_stack load:&proj];
   
   return self;
@@ -440,7 +439,15 @@ Must be called after all drawing is done
   m_bgBlue  = blue;
   glClearColor(m_bgRed, m_bgGreen, m_bgBlue, 1.0f);
 }
-
+/******************************************************************************/
+/*
+ Returns the size of the game wor
+ */
+/******************************************************************************/
+-(const Vec2*)getScreenSize
+{
+  return &m_screenSize;
+}
 @end
 //end of Graphics implementation
 

@@ -17,6 +17,7 @@
 #import <GLKit/GLKit.h>
 #import <OpenGLES/ES2/glext.h>
 #import "Mtx44.h"
+#import "Vec2D.h"
 
 
 @interface Graphics : NSObject
@@ -44,6 +45,9 @@
 -(void)setBackgroundRed:(float)red
                   Green:(float)green
                    Blue:(float)blue;
+
+-(const Vec2*)getScreenSize;
+
 @end
 
 

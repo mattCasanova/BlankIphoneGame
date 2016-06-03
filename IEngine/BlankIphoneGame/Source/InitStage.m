@@ -27,16 +27,12 @@
 }
 -(void)update:(float)dt
 {
-  static float rot = 0;
-  rot += 2.f * dt;
-  rot = Wrap(rot, 0, PI * 2);
   Mtx44 world;
-  Vec2 mouse;
-  
 
-  mouse = [[m_gameMgr input]GetTouchData]->touchLoc;
-  Mtx44MakeTransform(&world, 300, 300, rot, mouse.x, mouse.y, 0);
-  [m_gameMgr.gfx setTextureRed:0 Green:1 Blue:0 Alpha:.25];
+  const Vec2* screenSize = [m_gameMgr.gfx getScreenSize];
+  
+  Mtx44MakeTransform(&world, screenSize->y * 1.3333f, screenSize->y, 0,
+                             screenSize->x/2, screenSize->y/2, 0);
   
   [m_gameMgr.gfx clearScreen];
   [m_gameMgr.gfx draw:&world];
