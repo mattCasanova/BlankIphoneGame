@@ -112,7 +112,7 @@
  True if x is in the range, false otherwise.
  */
 /******************************************************************************/
--(void)shutdown
+-(void)dealloc
 {
   //shutdown current stage and factory
   [m_stage shutdown];

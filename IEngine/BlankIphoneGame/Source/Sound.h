@@ -22,8 +22,11 @@ The sound class is resposible for playing sound effects.  For now only short
 
 @interface Sound : NSObject
 
--(void)loadSoundEffect:(NSString*)fileName;
--(void)playSound
+-(Sound*)init;
+-(void)dealloc
+-(int)loadSound:(NSString*)fileName;
+-(void)playSound:(int)soundID;
+
 
 @end
 

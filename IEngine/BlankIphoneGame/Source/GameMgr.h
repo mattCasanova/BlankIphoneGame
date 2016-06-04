@@ -29,8 +29,9 @@
 -(GameMgr*)initWithWidth:(float)width
                   Height:(float)height
               StartStage:(StageType)startStage;
+-(void)dealloc;
 -(void)update:(float)dt;
--(void)shutdown;
+
 -(void)setNextStage:(StageType) nextStage;
 
 

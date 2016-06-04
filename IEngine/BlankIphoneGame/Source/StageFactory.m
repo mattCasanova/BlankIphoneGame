@@ -44,6 +44,19 @@ Returns a pointer to a StageFactory Object or nil.
 }
 /******************************************************************************/
 /*!
+ C
+ 
+ \return
+ Returns a pointer to a StageFactory Object or nil.
+ */
+/******************************************************************************/
+-(void)dealloc
+{
+  [m_builders removeAllObjects];
+  m_builders = nil;
+}
+/******************************************************************************/
+/*!
  Adds a StageBuilder to the factory that can be accessed with the given
  StageType enum
  

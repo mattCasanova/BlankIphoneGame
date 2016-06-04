@@ -26,6 +26,7 @@
 @interface StageFactory : NSObject
 
 -(StageFactory*)init;
+-(void)dealloc;
 -(void)addBuilder:(id<StageBuilder>) builder OfType: (StageType)type;
 -(void)removeBuilderOfType:(StageType)type;
 -(id<Stage>)CreateStageOfType:(StageType)type;
