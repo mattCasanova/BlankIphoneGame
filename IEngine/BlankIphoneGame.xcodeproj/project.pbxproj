@@ -80,6 +80,7 @@
 		F5956AA81CF8270C0018FE88 /* StageBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StageBuilder.h; path = Source/StageBuilder.h; sourceTree = "<group>"; };
 		F5A40E421D014BF8008E538C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sound.m; path = Source/Sound.m; sourceTree = "<group>"; };
 		F5A40E441D014C3C008E538C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = Source/Sound.h; sourceTree = "<group>"; };
+		F5A5131F1D0FD16B009D4447 /* Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Objects.h; path = Source/Objects.h; sourceTree = "<group>"; };
 		F5AB64FD1CB39526007A8EA7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		F5AB64FF1CB396E7007A8EA7 /* GameMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMath.h; path = Source/GameMath.h; sourceTree = "<group>"; };
 		F5AB65011CB3970C007A8EA7 /* GameMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMath.m; path = Source/GameMath.m; sourceTree = "<group>"; };
@@ -129,12 +130,9 @@
 		F5234F5D1CBA12BF001D6983 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				F540FCDC1CF86F3B0028E0F3 /* Input */,
+				F5A5131D1D0FCFC3009D4447 /* Systems */,
+				F5A5131C1D0FCFA4009D4447 /* AppleCode */,
 				F540F1911CC1E5600082FF6F /* Stages */,
-				F5BFBCBA1CBFB3C100445653 /* GameMgr */,
-				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
-				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
-				F57E03DC1CB13AF400FFF2D5 /* ViewController */,
 				F5AB65001CB396EE007A8EA7 /* MathHelp */,
 			);
 			name = Engine;
@@ -285,6 +283,34 @@
 				F5A40E421D014BF8008E538C /* Sound.m */,
 			);
 			name = Sound;
+			sourceTree = "<group>";
+		};
+		F5A5131C1D0FCFA4009D4447 /* AppleCode */ = {
+			isa = PBXGroup;
+			children = (
+				F57E03DC1CB13AF400FFF2D5 /* ViewController */,
+				F57E03D91CB1353A00FFF2D5 /* AppDelegate */,
+			);
+			name = AppleCode;
+			sourceTree = "<group>";
+		};
+		F5A5131D1D0FCFC3009D4447 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				F5A5131E1D0FCFF7009D4447 /* ObjectMgr */,
+				F57E03DB1CB1362B00FFF2D5 /* Graphics */,
+				F5BFBCBA1CBFB3C100445653 /* GameMgr */,
+				F540FCDC1CF86F3B0028E0F3 /* Input */,
+			);
+			name = Systems;
+			sourceTree = "<group>";
+		};
+		F5A5131E1D0FCFF7009D4447 /* ObjectMgr */ = {
+			isa = PBXGroup;
+			children = (
+				F5A5131F1D0FD16B009D4447 /* Objects.h */,
+			);
+			name = ObjectMgr;
 			sourceTree = "<group>";
 		};
 		F5AB65001CB396EE007A8EA7 /* MathHelp */ = {
@@ -654,6 +680,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = virtualmethod.BlankIphoneGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -672,6 +699,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = virtualmethod.BlankIphoneGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
