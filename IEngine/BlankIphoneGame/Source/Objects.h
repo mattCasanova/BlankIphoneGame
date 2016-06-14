@@ -14,12 +14,32 @@ Header file that defines game objects and buttons.  For now the objects are
 #ifndef Objects_h
 #define Objects_h
 
-#import "Vec2.h"
+#import "Vec2D.h"
+
+
+//Do I need this
+typedef enum{
+  OT_MISSILE,
+  OT_BASE
+}ObjectType;
+
 
 
 typedef struct
 {
-  
+  Vec2  pos;
+  Vec2  vel;
+  Vec2  scale;
+  float rot;
+  int   id;
 }Object;
+
+
+typedef struct
+{
+  Vec2 pos;
+  Vec2 scale;
+  int  id;
+}Button;
 
 #endif /* Objects_h */

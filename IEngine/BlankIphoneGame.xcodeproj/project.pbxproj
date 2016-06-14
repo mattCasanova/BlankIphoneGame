@@ -22,6 +22,7 @@
 		F57E03CC1CB1312100FFF2D5 /* BlankIphoneGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E03CB1CB1312100FFF2D5 /* BlankIphoneGameUITests.m */; };
 		F5956AA61CF825ED0018FE88 /* StageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F5956AA51CF825ED0018FE88 /* StageFactory.m */; };
 		F5A40E431D014BF8008E538C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A40E421D014BF8008E538C /* Sound.m */; };
+		F5A513221D0FD35E009D4447 /* ObjectMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A513211D0FD35E009D4447 /* ObjectMgr.m */; };
 		F5AB64FE1CB39526007A8EA7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AB64FD1CB39526007A8EA7 /* GLKit.framework */; };
 		F5AB65021CB3970C007A8EA7 /* GameMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65011CB3970C007A8EA7 /* GameMath.m */; };
 		F5AB65061CB39D8A007A8EA7 /* Vec2D.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AB65041CB39D8A007A8EA7 /* Vec2D.m */; };
@@ -81,6 +82,8 @@
 		F5A40E421D014BF8008E538C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sound.m; path = Source/Sound.m; sourceTree = "<group>"; };
 		F5A40E441D014C3C008E538C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = Source/Sound.h; sourceTree = "<group>"; };
 		F5A5131F1D0FD16B009D4447 /* Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Objects.h; path = Source/Objects.h; sourceTree = "<group>"; };
+		F5A513201D0FD35E009D4447 /* ObjectMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectMgr.h; path = Source/ObjectMgr.h; sourceTree = "<group>"; };
+		F5A513211D0FD35E009D4447 /* ObjectMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectMgr.m; path = Source/ObjectMgr.m; sourceTree = "<group>"; };
 		F5AB64FD1CB39526007A8EA7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		F5AB64FF1CB396E7007A8EA7 /* GameMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameMath.h; path = Source/GameMath.h; sourceTree = "<group>"; };
 		F5AB65011CB3970C007A8EA7 /* GameMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMath.m; path = Source/GameMath.m; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				F5A5131F1D0FD16B009D4447 /* Objects.h */,
+				F5A513201D0FD35E009D4447 /* ObjectMgr.h */,
+				F5A513211D0FD35E009D4447 /* ObjectMgr.m */,
 			);
 			name = ObjectMgr;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				F5AB65131CB3AA07007A8EA7 /* Distance.m in Sources */,
 				F57E03A71CB1312100FFF2D5 /* AppDelegate.m in Sources */,
 				F540F1941CC1E5990082FF6F /* InitStage.m in Sources */,
+				F5A513221D0FD35E009D4447 /* ObjectMgr.m in Sources */,
 				F5A40E431D014BF8008E538C /* Sound.m in Sources */,
 				F5AB65021CB3970C007A8EA7 /* GameMath.m in Sources */,
 				F5AB65161CB3B2B0007A8EA7 /* Intersect.m in Sources */,
